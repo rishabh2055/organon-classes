@@ -1,0 +1,22 @@
+.dashboard-add-icon{
+  top: 2px !important;
+}
+.table thead tr th {
+  font-size: 10px !important;
+  font-weight: 600;
+}
+.table tbody tr td {
+  font-size: 12px;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 100px;
+  width: 100px;
+}
+.top-6{
+  margin-top: 6px;
+}
+.report-btn{
+  padding: 8px 8px 8px 0;
+}

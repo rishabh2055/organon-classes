@@ -1,0 +1,48 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card ">
+          <div class="card-header card-header-rose card-header-text">
+            <div class="card-text">
+              <h4 class="card-title">{{streamId? 'Edit': 'Add'}} Stream</h4>
+            </div>
+          </div>
+          <div class="card-body ">
+            <form [formGroup]="streamForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+              <div class="inner-card shadow">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group md-form">
+                      <label for="name" class="bmd-label-floating" [ngClass]="{ 'has-danger': submitted && f.class.errors }">Class</label>
+                      <ngx-select-dropdown [options]="classesList" formControlName="class" [multiple]="false" [config]="classConfig" class="select-picker"></ngx-select-dropdown>
+                      <label *ngIf="submitted && f.name.errors" class="error">
+                        <span *ngIf="f.class.errors.required">Select a class</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group md-form">
+                      <label for="name" class="bmd-label-floating" [ngClass]="{ 'has-danger': submitted && f.name.errors }">Name</label>
+                      <input id="name" formControlName="name" type="text" class="form-control" placeholder="Stream name">
+                      <label *ngIf="submitted && f.name.errors" class="error">
+                        <span *ngIf="f.name.errors.required">Stream name is required</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <button type="submit" class="btn btn-fill btn-rose" [disabled]="disableSubmit">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

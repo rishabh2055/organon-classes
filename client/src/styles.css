@@ -1,0 +1,94 @@
+/* You can add global styles to this file, and also import other style files */
+@import "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons";
+
+.main-panel .content {
+  padding: 30px 15px;
+  min-height: calc(100vh - 123px);
+}
+.has-danger input::placeholder,
+.has-danger textarea::placeholder,
+.has-danger .display-text {
+  color: #f44336;
+}
+label.error span {
+  display: block;
+}
+div.error {
+  width: 100%;
+}
+.available-items li:hover {
+  background-color: aliceblue;
+}
+.goals {
+  height: 30px !important;
+  min-width: 30px !important;
+  width: 30px !important;
+}
+.goals .material-icons {
+  font-size: 20px !important;
+  line-height: 31px !important;
+}
+.table-actions button {
+  padding: 5px;
+}
+.swal2-container {
+  background-color: rgba(0, 0, 0, 0.4) !important;
+}
+.select-picker button {
+  border-top: none !important;
+  border-right: none !important;
+  border-left: none !important;
+  border-radius: 0 !important;
+}
+.btn-add {
+  padding: 8px 8px 8px 0px !important;
+  margin: 12px 0 !important;
+}
+.ngx-dropdown-button .nsdicon-angle-down::before {
+  height: 6px !important;
+  width: 6px !important;
+}
+.modal-card-text,
+.btn-modal {
+  padding: 6px !important;
+}
+.icon-images {
+  line-height: 18px !important;
+}
+.icon-images img {
+  filter: invert(1);
+  height: 25px;
+}
+
+.inner-card {
+  border: 1px solid #d5d5d5;
+  padding: 2%;
+  border-radius: 10px;
+  margin: 2% 0;
+}
+.shadow {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+.card .card-header-rose .card-icon,
+.card .card-header-rose .card-text,
+.card .card-header-rose:not(.card-header-icon):not(.card-header-text),
+.card.bg-rose,
+.card.card-rotate.bg-rose .front,
+.card.card-rotate.bg-rose .back,
+.sidebar[data-color="rose"] li.active > a,
+.btn.btn-rose:focus, .btn.btn-rose, .btn.btn-rose.focus, .btn.btn-rose:hover {
+  background: linear-gradient(60deg, #DC143C, #DC143C) !important;
+}
+.nav-pills .nav-item .nav-link {
+  color: #fff !important;
+}
+.nav-pills.nav-pills-warning .nav-item .nav-link.active,
+.nav-pills.nav-pills-warning .nav-item .nav-link.active:focus,
+.nav-pills.nav-pills-warning .nav-item .nav-link.active:hover {
+  background: #484d4e !important;
+}
+.form-group input[type=file] {
+  opacity: 1 !important;
+    position: relative !important;
+    z-index: 1000 !important;
+}

@@ -1,0 +1,100 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card ">
+          <div class="card-header card-header-rose card-header-text">
+            <div class="card-text">
+              <h4 class="card-title">Add User</h4>
+            </div>
+          </div>
+          <div class="card-body ">
+            <form class="form-horizontal">
+              <div class="inner-card shadow">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group md-form">
+                      <label for="name" class="bmd-label-floating">Name</label>
+                      <input id="name" type="text" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="form-group md-form">
+                      <label for="email" class="bmd-label-floating">Email</label>
+                      <input id="email" type="text" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="form-group md-form">
+                      <label for="fName" class="bmd-label-floating">Father's Name</label>
+                      <input id="fName" type="text" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="form-group md-form">
+                      <label for="dob" class="bmd-label-floating">Date Of Birth</label>
+                      <input id="dob" type="text" class="form-control" bsDatepicker>
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="form-group md-form">
+                      <label for="class" class="bmd-label-floating">Class</label>
+                      <ngx-select-dropdown [multiple]="false" [config]="classConfig" class="select-picker"></ngx-select-dropdown>
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="form-group md-form">
+                      <label for="stream" class="bmd-label-floating">Stream</label>
+                      <ngx-select-dropdown [multiple]="false" [config]="streamConfig" class="select-picker"></ngx-select-dropdown>
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="form-group md-form">
+                      <label for="phone" class="bmd-label-floating">Mobile No.</label>
+                      <input id="phone" type="text" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="form-group md-form">
+                      <label for="city" class="bmd-label-floating">City</label>
+                      <input id="city" type="text" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="form-group md-form">
+                      <label for="password" class="bmd-label-floating">Password</label>
+                      <input id="password" type="password" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="form-group md-form">
+                      <label for="cPassword" class="bmd-label-floating">Confirm Password</label>
+                      <input id="cPassword" type="text" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="form-group md-form">
+                      <label for="city" class="bmd-label-floating">City</label>
+                      <input id="city" type="text" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="form-group md-form">
+                      <label for="address" class="bmd-label-floating">Address</label>
+                      <textarea id="address" type="text" class="form-control"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <button type="submit" class="btn btn-fill btn-rose">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,375 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-success card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">groups</i>
+            </div>
+            <p class="card-category">Classes</p>
+            <h3 class="card-title">{{classList?.length}}</h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons dashboard-add-icon">add</i>
+              <a [routerLink]="'/classes'">Add more...</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-success card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">assignment</i>
+            </div>
+            <p class="card-category">Streams</p>
+            <h3 class="card-title">{{streamList?.length}}</h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons dashboard-add-icon">add</i>
+              <a [routerLink]="'/streams'">Add more...</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-success card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">book</i>
+            </div>
+            <p class="card-category">Subjects</p>
+            <h3 class="card-title">{{subjectList?.length}}</h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons dashboard-add-icon">add</i>
+              <a [routerLink]="'/subjects'">Add more...</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-info card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">library_books</i>
+            </div>
+            <p class="card-category">Topics</p>
+            <h3 class="card-title">{{topicList?.length}}</h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons dashboard-add-icon">add</i>
+              <a [routerLink]="'/topics'">Add more...</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-warning card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">note_add</i>
+            </div>
+            <p class="card-category">Sections</p>
+            <h3 class="card-title">{{sectionList?.length}}</h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons dashboard-add-icon">add</i>
+              <a [routerLink]="'/sections'">Add more...</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-rose card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">question_answer</i>
+            </div>
+            <p class="card-category">Questions</p>
+            <h3 class="card-title">{{questionList?.length}}</h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons dashboard-add-icon">add</i>
+              <a [routerLink]="'/questions'">Add more...</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header card-header-rose card-header-text">
+            <div class="card-text">
+
+              <ul class="nav nav-pills nav-pills-warning" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link" [ngClass]="{'active show': currentTab === 'Classes'}"
+                  (click)="changeTab('Classes')" data-toggle="tab" role="tablist">
+                    Classes
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" [ngClass]="{'active show': currentTab === 'Streams'}"
+                  (click)="changeTab('Streams')" data-toggle="tab" role="tablist">
+                    Streams
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" [ngClass]="{'active show': currentTab === 'Subjects'}"
+                  (click)="changeTab('Subjects')" data-toggle="tab" role="tablist">
+                    Subjects
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" [ngClass]="{'active show': currentTab === 'Topics'}"
+                  (click)="changeTab('Topics')" data-toggle="tab" role="tablist">
+                    Topics
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" [ngClass]="{'active show': currentTab === 'Sections'}"
+                  (click)="changeTab('Sections')" data-toggle="tab" role="tablist">
+                    Sections
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" [ngClass]="{'active show': currentTab === 'Questions'}"
+                  (click)="changeTab('Questions')" data-toggle="tab" role="tablist">
+                    Questions
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card-body ">
+            <div class="tab-content tab-space">
+              <div class="tab-pane" [ngClass]="{'active show': currentTab === 'Classes'}">
+                <table id="classDatatables" class="table table-striped table-no-bordered table-hover"
+                  style="width:100%">
+                  <thead>
+                    <tr>
+                      <th class="text-center"><input type="checkbox" name="selectClasses" [checked]="isAllChecked" (click)="checkuncheckall(classList)"></th>
+                      <th class="text-center">Name</th>
+                      <th class="text-center">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let data of classList;let indexOfelement=index;">
+                      <td class="text-center"><input type="checkbox" name="selectClasses" (change)="onChecked(data, classList)" [checked]="data.checked" value="{{data.id}}"></td>
+                      <td class="text-center">{{data.name}}</td>
+                      <td class="table-actions text-center">
+                        <button title="Edit Class" type="button" rel="tooltip" class="btn btn-success btn-round"
+                          (click)="editClass(data)">
+                          <i class="material-icons">edit</i>
+                        </button>
+                        <button title="Delete Class" type="button" rel="tooltip" class="btn btn-danger btn-round"
+                          (click)="deleteClass(data)">
+                          <i class="material-icons">close</i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="tab-pane" [ngClass]="{'active show': currentTab === 'Streams'}">
+                <table id="streamDatatables" class="table table-striped table-no-bordered table-hover"
+                  style="width:100%">
+                  <thead>
+                    <tr>
+                      <th class="text-center"><input type="checkbox" name="selectStreams" [checked]="isAllChecked" (click)="checkuncheckall(streamList)"></th>
+                      <th class="text-center">Class</th>
+                      <th class="text-center">Name</th>
+                      <th class="text-center">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let data of streamList;let indexOfelement=index;">
+                      <td class="text-center"><input type="checkbox" name="selectStreams" (change)="onChecked(data, streamList)" [checked]="data.checked" value="{{data.id}}"></td>
+                      <td class="text-center">{{data.class.name}}</td>
+                      <td class="text-center">{{data.name}}</td>
+                      <td class="table-actions text-center">
+                        <button title="Edit Stream" type="button" rel="tooltip" class="btn btn-success btn-round"
+                          (click)="editStream(data)">
+                          <i class="material-icons">edit</i>
+                        </button>
+                        <button title="Delete Stream" type="button" rel="tooltip" class="btn btn-danger btn-round"
+                          (click)="deleteStream(data)">
+                          <i class="material-icons">close</i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="tab-pane" [ngClass]="{'active show': currentTab === 'Subjects'}">
+                <table id="subjectDatatables" class="table table-striped table-no-bordered table-hover"
+                  style="width:100%">
+                  <thead>
+                    <tr>
+                      <th class="text-center"><input type="checkbox" name="selectSubjects" [checked]="isAllChecked" (click)="checkuncheckall(subjectList)"></th>
+                      <th class="text-center">Class</th>
+                      <th class="text-center">Stream</th>
+                      <th class="text-center">Name</th>
+                      <th class="text-center">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let data of subjectList;let indexOfelement=index;">
+                      <td class="text-center"><input type="checkbox" name="selectSubjects" (change)="onChecked(data, subjectList)" [checked]="data.checked" value="{{data.id}}"></td>
+                      <td class="text-center">{{data.class.name}}</td>
+                      <td class="text-center">{{data.stream.name}}</td>
+                      <td class="text-center">{{data.name}}</td>
+                      <td class="table-actions text-center">
+                        <button title="Edit Subject" type="button" rel="tooltip" class="btn btn-success btn-round"
+                          (click)="editSubject(data)">
+                          <i class="material-icons">edit</i>
+                        </button>
+                        <button title="Delete Subject" type="button" rel="tooltip" class="btn btn-danger btn-round"
+                          (click)="deleteSubject(data)">
+                          <i class="material-icons">close</i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="tab-pane" [ngClass]="{'active show': currentTab === 'Topics'}">
+                <table id="topicDatatables" class="table table-striped table-no-bordered table-hover"
+                  style="width:100%">
+                  <thead>
+                    <tr>
+                      <th class="text-center"><input type="checkbox" name="selectTopics" [checked]="isAllChecked" (click)="checkuncheckall(topicList)"></th>
+                      <th class="text-center">Class</th>
+                      <th class="text-center">Stream</th>
+                      <th class="text-center">Subject</th>
+                      <th class="text-center">Name</th>
+                      <th class="text-center">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let data of topicList;let indexOfelement=index;">
+                      <td class="text-center"><input type="checkbox" name="selectTopics" (change)="onChecked(data, topicList)" [checked]="data.checked" value="{{data.id}}"></td>
+                      <td class="text-center">{{data.class.name}}</td>
+                      <td class="text-center">{{data.stream.name}}</td>
+                      <td class="text-center">{{data.subject.name}}</td>
+                      <td class="text-center">{{data.name}}</td>
+                      <td class="table-actions text-center">
+                        <button title="Edit Topic" type="button" rel="tooltip" class="btn btn-success btn-round"
+                          (click)="editTopic(data)">
+                          <i class="material-icons">edit</i>
+                        </button>
+                        <button title="Delete Topic" type="button" rel="tooltip" class="btn btn-danger btn-round"
+                          (click)="deleteTopic(data)">
+                          <i class="material-icons">close</i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="tab-pane" [ngClass]="{'active show': currentTab === 'Sections'}">
+                <table id="sectionDatatables" class="table table-striped table-no-bordered table-hover"
+                  style="width:100%">
+                  <thead>
+                    <tr>
+                      <th class="text-center"><input type="checkbox" name="selectSections" [checked]="isAllChecked" (click)="checkuncheckall(sectionList)"></th>
+                      <th class="text-center">Class</th>
+                      <th class="text-center">Stream</th>
+                      <th class="text-center">Subject</th>
+                      <th class="text-center">Topic</th>
+                      <th class="text-center">Name</th>
+                      <th class="text-center">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let data of sectionList;let indexOfelement=index;">
+                      <td class="text-center"><input type="checkbox" name="selectSections" (change)="onChecked(data, sectionList)" [checked]="data.checked" value="{{data.id}}"></td>
+                      <td class="text-center">{{data.class.name}}</td>
+                      <td class="text-center">{{data.stream.name}}</td>
+                      <td class="text-center">{{data.subject.name}}</td>
+                      <td class="text-center">{{data.topic.name}}</td>
+                      <td class="text-center">{{data.name}}</td>
+                      <td class="table-actions text-center">
+                        <button title="Edit Section" type="button" rel="tooltip" class="btn btn-success btn-round"
+                          (click)="editSection(data)">
+                          <i class="material-icons">edit</i>
+                        </button>
+                        <button title="Delete Section" type="button" rel="tooltip" class="btn btn-danger btn-round"
+                          (click)="deleteSection(data)">
+                          <i class="material-icons">close</i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="tab-pane" [ngClass]="{'active show': currentTab === 'Questions'}">
+                <table id="questionDatatables" class="table table-striped table-no-bordered table-hover"
+                  style="width:100%">
+                  <thead>
+                    <tr>
+                      <th class="text-center"><input type="checkbox" name="selectQuestions" [checked]="isAllChecked" (click)="checkuncheckall(questionList)"></th>
+                      <th class="text-center">Class</th>
+                      <th class="text-center">Stream</th>
+                      <th class="text-center">Subject</th>
+                      <th class="text-center">Topic</th>
+                      <th class="text-center">Section</th>
+                      <th class="text-center">Question</th>
+                      <th class="text-center">Video Link</th>
+                      <th class="text-center">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let data of questionList;let indexOfelement=index;">
+                      <td class="text-center"><input type="checkbox" name="selectQuestions" (change)="onChecked(data, questionList)" [checked]="data.checked" value="{{data.id}}"></td>
+                      <td class="text-center">{{data.class.name}}</td>
+                      <td class="text-center">{{data.stream.name}}</td>
+                      <td class="text-center">{{data.subject.name}}</td>
+                      <td class="text-center">{{data.topic.name}}</td>
+                      <td class="text-center">{{data.section.name}}</td>
+                      <td class="text-center"><img src="assets/uploads/{{data.image}}" style="height: 50px; width: 50px;"></td>
+                      <td class="text-center">{{data.video}}</td>
+                      <td class="table-actions text-center">
+                        <button title="Edit Question" type="button" rel="tooltip" class="btn btn-success btn-round"
+                          (click)="editQuestion(data)">
+                          <i class="material-icons">edit</i>
+                        </button>
+                        <button title="Delete Question" type="button" rel="tooltip" class="btn btn-danger btn-round"
+                          (click)="deleteQuestion(data)">
+                          <i class="material-icons">close</i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="tab-pane" [ngClass]="{'active show': currentTab === 'Users'}">
+                <table id="userDatatables" class="table table-striped table-no-bordered table-hover"
+                  style="width:100%">
+                  <thead>
+                    <tr>
+                      <th><input type="checkbox" name="selectUsers"></th>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

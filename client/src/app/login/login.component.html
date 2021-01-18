@@ -1,0 +1,47 @@
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto login-pad">
+      <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="card card-login card-hidden">
+          <div class="card-header card-header-rose text-center">
+            <h4 class="card-title">Login</h4>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group md-form input-group mb-3" [ngClass]="{ 'has-danger': submitted && f.email.errors }">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="material-icons">email</i>
+                    </span>
+                  </div>
+                  <input id="email" type="text" formControlName="email" class="form-control" placeholder="Email">
+                  <div *ngIf="submitted && f.email.errors" class="error">
+                    <span *ngIf="f.email.errors.required">Email is required</span>
+                    <span *ngIf="f.email.errors.email">Should be a valid email</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <div class="form-group md-form input-group mb-3" [ngClass]="{ 'has-danger': submitted && f.password.errors }">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="material-icons">lock_outline</i>
+                    </span>
+                  </div>
+                  <input id="password" type="password" formControlName="password" class="form-control" placeholder="Password">
+                  <div *ngIf="submitted && f.password.errors" class="error">
+                    <span *ngIf="f.email.errors.required">Password is required</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer justify-content-center">
+            <button type="submit" class="btn btn-fill btn-rose" [disabled]="disableSubmit">Login</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div> -->

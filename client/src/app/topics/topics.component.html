@@ -1,0 +1,70 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card ">
+          <div class="card-header card-header-rose card-header-text">
+            <div class="card-text">
+              <h4 class="card-title">{{topicId? 'Edit': 'Add'}} Topic</h4>
+            </div>
+          </div>
+          <div class="card-body ">
+            <form [formGroup]="topicForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+              <div class="inner-card shadow">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group md-form">
+                      <label for="name" class="bmd-label-floating" [ngClass]="{ 'has-danger': submitted && f.class.errors }">Class</label>
+                      <ngx-select-dropdown (change)="getAllStreams()" [options]="classesList" formControlName="class" [multiple]="false" [config]="classConfig" class="select-picker"></ngx-select-dropdown>
+                      <label *ngIf="submitted && f.class.errors" class="error">
+                        <span *ngIf="f.class.errors.required">Select a class</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group md-form">
+                      <label for="name" class="bmd-label-floating" [ngClass]="{ 'has-danger': submitted && f.stream.errors }">Stream</label>
+                      <ngx-select-dropdown (change)="getAllSubjects()" [options]="streamsList" formControlName="stream" [multiple]="false" [config]="streamConfig" class="select-picker"></ngx-select-dropdown>
+                      <label *ngIf="submitted && f.stream.errors" class="error">
+                        <span *ngIf="f.stream.errors.required">Select a stream</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group md-form">
+                      <label for="name" class="bmd-label-floating" [ngClass]="{ 'has-danger': submitted && f.name.errors }">Subject</label>
+                      <ngx-select-dropdown [options]="subjectsList" formControlName="subject" [multiple]="false" [config]="subjectConfig" class="select-picker"></ngx-select-dropdown>
+                      <label *ngIf="submitted && f.subject.errors" class="error">
+                        <span *ngIf="f.subject.errors.required">Select a subject</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group md-form">
+                      <label for="name" class="bmd-label-floating" [ngClass]="{ 'has-danger': submitted && f.name.errors }">Name</label>
+                      <input id="name" formControlName="name" type="text" class="form-control" placeholder="Topic name">
+                      <label *ngIf="submitted && f.name.errors" class="error">
+                        <span *ngIf="f.name.errors.required">Topic name is required</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <button type="submit" class="btn btn-fill btn-rose" [disabled]="disableSubmit">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

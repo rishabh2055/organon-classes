@@ -1,0 +1,21 @@
+
+.sidebar .sidebar-wrapper
+.sidebar a, .sidebar i, .sidebar .nav li a,
+.sidebar .logo .simple-text, .sidebar .user a{
+  color: #fff;
+}
+.sidebar .logo {
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2%;
+}
+.sidebar .logo{
+  background-color: #42a5f5;
+}
+.sidebar .sidebar-wrapper {
+  overflow: hidden !important;
+  background-color: #42a5f5 !important;
+  height: 100vh !important;
+}

@@ -1,0 +1,86 @@
+<div class="sidebar" data-color="rose">
+  <!--
+    Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+    Tip 2: you can also add an image using data-image tag
+-->
+  <div class="logo">
+    <a [routerLink] = "'/'" class="simple-text logo-normal">
+      Organon Classes
+    </a></div>
+  <div class="sidebar-wrapper">
+    <div class="user">
+      <div class="photo">
+        <img src="../../../assets/images/default-avatar.png" />
+      </div>
+      <div class="user-info">
+        <a data-toggle="collapse" href="javascript:void(0)" (click)="isCollapsed = !isCollapsed" class="username" [attr.aria-expAnded]="isCollapsed">
+          <span>
+            Admin User
+            <b class="caret"></b>
+          </span>
+        </a>
+        <div class="collapse" [class.show]="isCollapsed" (collapsed)="collapsed($event)" (expanded)="expanded($event)">
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="javascript:void(0)" (click)="logout()">
+                <span class="sidebar-mini"> <i class="material-icons">power_settings_new</i></span>
+                <span class="sidebar-normal">Logout</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <ul class="nav">
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
+        <a class="nav-link" [routerLink] = "['/']">
+          <i class="material-icons">dashboard</i>
+          <p> Dashboard </p>
+        </a>
+      </li>
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
+        <a class="nav-link" [routerLink] = "['/classes']">
+          <i class="material-icons">groups</i>
+          <p> Classes </p>
+        </a>
+      </li>
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
+        <a class="nav-link" [routerLink] = "['/streams']">
+          <i class="material-icons">assignment</i>
+          <p> Streams </p>
+        </a>
+      </li>
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
+        <a class="nav-link" [routerLink] = "['/subjects']">
+          <i class="material-icons">book</i>
+          <p> Subjects </p>
+        </a>
+      </li>
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
+        <a class="nav-link" [routerLink] = "['/topics']">
+          <i class="material-icons">library_books</i>
+          <p> Topics </p>
+        </a>
+      </li>
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
+        <a class="nav-link" [routerLink] = "['/sections']">
+          <i class="material-icons">note_add</i>
+          <p> Sections </p>
+        </a>
+      </li>
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
+        <a class="nav-link" [routerLink] = "['/questions']">
+          <i class="material-icons">question_answer</i>
+          <p> Questions </p>
+        </a>
+      </li>
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
+        <a class="nav-link" [routerLink] = "['/users']">
+          <i class="material-icons">people</i>
+          <p> Users </p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
