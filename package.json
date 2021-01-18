@@ -6,7 +6,7 @@
   "scripts": {
     "build": "babel -d ./dist ./server",
     "prebuild": "rimraf dist",
-    "start": "SET NODE_ENV=production node ./dist/server.js",
+    "start": "NODE_ENV=production node ./dist/server.js",
     "prestart": "npm build",
     "dev": "nodemon --exec babel-node --inspect-brk server/server.js"
   },
