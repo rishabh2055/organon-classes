@@ -9,6 +9,7 @@ import { SubjectService } from '../../_utils/subject.service';
 import { TopicService } from '../../_utils/topic.service';
 import { SectionService } from '../../_utils/section.service';
 import { QuestionService } from '../../_utils/question.service';
+import { UserService } from '../../_utils/user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,6 +25,7 @@ export class DashboardComponent implements OnInit {
   public topicList: Array<any>;
   public sectionList: Array<any>;
   public questionList: Array<any>;
+  public userList: Array<any>;
   public checkedList: Array<any> = [];
   constructor(
     private classService: ClassService,
@@ -32,6 +34,7 @@ export class DashboardComponent implements OnInit {
     private topicService: TopicService,
     private sectionService: SectionService,
     private questionService: QuestionService,
+    private userService: UserService,
     private router: Router,
     private route: ActivatedRoute
   ) {
@@ -243,6 +246,40 @@ export class DashboardComponent implements OnInit {
             ]
           });
         }, 1000);
+        this.getAllUsers();
+      },
+      (error) => {
+        Swal.fire('Oops...', error.error.message, 'error');
+      }
+    );
+  }
+
+  getAllUsers() {
+    if ($.fn.DataTable.isDataTable('#userDatatables')) {
+      $('#userDatatables').DataTable().destroy();
+    }
+    this.userService.getAllUsers().subscribe(
+      (response) => {
+        response.map(res => res.checked = false);
+        this.userList = response;
+        setTimeout(() => {
+          const userTable = $('#userDatatables').DataTable({
+            'pagingType': 'full_numbers',
+            'lengthMenu': [
+              [10, 25, 50, -1],
+              [10, 25, 50, 'All']
+            ],
+            responsive: true,
+            language: {
+              search: '_INPUT_',
+              searchPlaceholder: 'Search records',
+            },
+            order: [],
+            columnDefs: [
+              { orderable: false, targets: [0] }
+            ]
+          });
+        }, 1000);
       },
       (error) => {
         Swal.fire('Oops...', error.error.message, 'error');
@@ -427,7 +464,38 @@ export class DashboardComponent implements OnInit {
               'Deleted Successfully!',
               'success'
             );
-            this.getAllSections();
+            this.getAllQuestions();
+          }, (error) => {
+            Swal.fire('Oops...', error.error.message, 'error');
+          }
+        );
+      }
+    });
+  }
+
+  editUser(user){
+    this.router.navigate([`users/${user.id}`]);
+  }
+
+  deleteUser(user){
+    Swal.fire({
+      title: 'Are you sure?',
+      text: `You won't be able to revert this!`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.userService.deleteUser(user.id).subscribe(
+          (response: any) => {
+            Swal.fire(
+              'Success',
+              'Deleted Successfully!',
+              'success'
+            );
+            this.getAllUsers();
           }, (error) => {
             Swal.fire('Oops...', error.error.message, 'error');
           }

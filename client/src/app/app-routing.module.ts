@@ -20,6 +20,7 @@ const routes: Routes = [
   {path: 'subjects' , component: SubjectComponent},
   {path: 'subjects/:id' , component: SubjectComponent},
   {path: 'users' , component: UsersComponent},
+  {path: 'users/:id' , component: UsersComponent},
   {path: 'classes' , component: ClassesComponent},
   {path: 'classes/:id' , component: ClassesComponent},
   {path: 'topics' , component: TopicsComponent},

@@ -103,6 +103,23 @@
           </div>
         </div>
       </div>
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-rose card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">people</i>
+            </div>
+            <p class="card-category">Users</p>
+            <h3 class="card-title">{{userList?.length}}</h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons dashboard-add-icon">add</i>
+              <a [routerLink]="'/users'">Add more...</a>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header card-header-rose card-header-text">
@@ -143,6 +160,12 @@
                   <a class="nav-link" [ngClass]="{'active show': currentTab === 'Questions'}"
                   (click)="changeTab('Questions')" data-toggle="tab" role="tablist">
                     Questions
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" [ngClass]="{'active show': currentTab === 'Users'}"
+                  (click)="changeTab('Users')" data-toggle="tab" role="tablist">
+                    Users
                   </a>
                 </li>
               </ul>
@@ -355,14 +378,38 @@
                   style="width:100%">
                   <thead>
                     <tr>
-                      <th><input type="checkbox" name="selectUsers"></th>
-                      <th>ID</th>
-                      <th>Name</th>
-                      <th>Actions</th>
+                      <th class="text-center"><input type="checkbox" name="selectUsers" [checked]="isAllChecked" (click)="checkuncheckall(userList)"></th>
+                      <th class="text-center">Name</th>
+                      <th class="text-center">Role</th>
+                      <th class="text-center">Email</th>
+                      <th class="text-center">Mobile No</th>
+                      <th class="text-center">Class</th>
+                      <th class="text-center">Stream</th>
+                      <th class="text-center">City</th>
+                      <th class="text-center">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
-
+                    <tr *ngFor="let data of userList;let indexOfelement=index;">
+                      <td class="text-center"><input type="checkbox" name="selectUsers" (change)="onChecked(data, userList)" [checked]="data.checked" value="{{data.id}}"></td>
+                      <td class="text-center">{{data.name}}</td>
+                      <td class="text-center">{{data.role}}</td>
+                      <td class="text-center">{{data.email}}</td>
+                      <td class="text-center">{{data.mobileNo}}</td>
+                      <td class="text-center">{{data.class.name}}</td>
+                      <td class="text-center">{{data.stream.name}}</td>
+                      <td class="text-center">{{data.city}}</td>
+                      <td class="table-actions text-center">
+                        <button title="Edit User" type="button" rel="tooltip" class="btn btn-success btn-round"
+                          (click)="editUser(data)">
+                          <i class="material-icons">edit</i>
+                        </button>
+                        <button title="Delete User" type="button" rel="tooltip" class="btn btn-danger btn-round"
+                          (click)="deleteUser(data)">
+                          <i class="material-icons">close</i>
+                        </button>
+                      </td>
+                    </tr>
                   </tbody>
                 </table>
               </div>

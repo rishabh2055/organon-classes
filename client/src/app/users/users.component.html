@@ -9,79 +9,125 @@
             </div>
           </div>
           <div class="card-body ">
-            <form class="form-horizontal">
+            <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="form-horizontal">
               <div class="inner-card shadow">
                 <div class="row">
                   <div class="col-sm-12">
-                    <div class="form-group md-form">
+                    <div class="form-group md-form" [ngClass]="{ 'has-danger': submitted && f.name.errors }">
                       <label for="name" class="bmd-label-floating">Name</label>
-                      <input id="name" type="text" class="form-control">
+                      <input formControlName="name" id="name" type="text" class="form-control">
+                      <label *ngIf="submitted && f.name.errors" class="error">
+                        <span *ngIf="f.name.errors.required">Name is required</span>
+                        <span *ngIf="f.name.errors.maxLength">Maximum length is 100 characters</span>
+                        <span *ngIf="f.name.errors.minLength">Should be minimum 2 characters</span>
+                      </label>
                     </div>
                   </div>
                   <div class="col-sm-12">
-                    <div class="form-group md-form">
+                    <div class="form-group md-form" [ngClass]="{ 'has-danger': submitted && f.email.errors }">
                       <label for="email" class="bmd-label-floating">Email</label>
-                      <input id="email" type="text" class="form-control">
+                      <input formControlName="email" id="email" type="text" class="form-control">
+                      <label *ngIf="submitted && f.email.errors" class="error">
+                        <span *ngIf="f.email.errors.required">Email is required</span>
+                        <span *ngIf="f.email.errors.email">Should be a valid email</span>
+                      </label>
                     </div>
                   </div>
                   <div class="col-sm-12">
-                    <div class="form-group md-form">
+                    <div class="form-group md-form" [ngClass]="{ 'has-danger': submitted && f.fName.errors }">
                       <label for="fName" class="bmd-label-floating">Father's Name</label>
-                      <input id="fName" type="text" class="form-control">
+                      <input formControlName="fName" id="fName" type="text" class="form-control">
+                      <label *ngIf="submitted && f.fName.errors" class="error">
+                        <span *ngIf="f.fName.errors.required">Father's Name is required</span>
+                        <span *ngIf="f.fName.errors.maxLength">Maximum length is 100 characters</span>
+                        <span *ngIf="f.fName.errors.minLength">Should be minimum 2 characters</span>
+                      </label>
                     </div>
                   </div>
                   <div class="col-sm-12">
-                    <div class="form-group md-form">
+                    <div class="form-group md-form" [ngClass]="{ 'has-danger': submitted && f.dob.errors }">
                       <label for="dob" class="bmd-label-floating">Date Of Birth</label>
-                      <input id="dob" type="text" class="form-control" bsDatepicker>
+                      <input formControlName="dob" id="dob" type="text" class="form-control" bsDatepicker>
+                      <label *ngIf="submitted && f.dob.errors" class="error">
+                        <span *ngIf="f.dob.errors.required">Date Of Birth is required</span>
+                      </label>
                     </div>
                   </div>
                   <div class="col-sm-12">
-                    <div class="form-group md-form">
+                    <div class="form-group md-form" [ngClass]="{ 'has-danger': submitted && f.role.errors }">
+                      <label for="role" class="bmd-label-floating">Role</label>
+                      <ngx-select-dropdown (change)="changeRole()" [options]="rolesList" formControlName="role" [multiple]="false" [config]="roleConfig" class="select-picker"></ngx-select-dropdown>
+                      <label *ngIf="submitted && f.role.errors" class="error">
+                        <span *ngIf="f.role.errors.required">Select a role</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div *ngIf="f.role.value?.name === 'Student'"  class="col-sm-12">
+                    <div class="form-group md-form" [ngClass]="{ 'has-danger': submitted && f.class.errors }">
                       <label for="class" class="bmd-label-floating">Class</label>
-                      <ngx-select-dropdown [multiple]="false" [config]="classConfig" class="select-picker"></ngx-select-dropdown>
+                      <ngx-select-dropdown [options]="classesList" formControlName="class" [multiple]="false" [config]="classConfig" class="select-picker"></ngx-select-dropdown>
+                      <label *ngIf="submitted && f.class.errors" class="error">
+                        <span *ngIf="f.class.errors.required">Select a class</span>
+                      </label>
                     </div>
                   </div>
-                  <div class="col-sm-12">
-                    <div class="form-group md-form">
+                  <div *ngIf="f.role.value?.name === 'Student'"  class="col-sm-12">
+                    <div class="form-group md-form" [ngClass]="{ 'has-danger': submitted && f.stream.errors }">
                       <label for="stream" class="bmd-label-floating">Stream</label>
-                      <ngx-select-dropdown [multiple]="false" [config]="streamConfig" class="select-picker"></ngx-select-dropdown>
+                      <ngx-select-dropdown [options]="streamsList" formControlName="stream" [multiple]="false" [config]="streamConfig" class="select-picker"></ngx-select-dropdown>
+                      <label *ngIf="submitted && f.stream.errors" class="error">
+                        <span *ngIf="f.stream.errors.required">Select a stream</span>
+                      </label>
                     </div>
                   </div>
                   <div class="col-sm-12">
-                    <div class="form-group md-form">
+                    <div class="form-group md-form" [ngClass]="{ 'has-danger': submitted && f.mobileNo.errors }">
                       <label for="phone" class="bmd-label-floating">Mobile No.</label>
-                      <input id="phone" type="text" class="form-control">
+                      <input formControlName="mobileNo" id="phone" type="text" class="form-control" >
+                      <label *ngIf="submitted && f.mobileNo.errors" class="error">
+                        <span *ngIf="f.mobileNo.errors.required">Mobile No is required</span>
+                        <span *ngIf="f.mobileNo.errors.pattern">Should be a valid mobile no</span>
+                      </label>
                     </div>
                   </div>
                   <div class="col-sm-12">
-                    <div class="form-group md-form">
-                      <label for="city" class="bmd-label-floating">City</label>
-                      <input id="city" type="text" class="form-control">
-                    </div>
-                  </div>
-                  <div class="col-sm-12">
-                    <div class="form-group md-form">
+                    <div class="form-group md-form" [ngClass]="{ 'has-danger': submitted && f.password.errors }">
                       <label for="password" class="bmd-label-floating">Password</label>
-                      <input id="password" type="password" class="form-control">
+                      <input formControlName="password" id="password" type="password" class="form-control">
+                      <label *ngIf="submitted && f.password.errors" class="error">
+                        <span *ngIf="f.password.errors.required">Password is required</span>
+                        <span *ngIf="f.password.errors.minLength">Should be minimum 6 characters</span>
+                      </label>
                     </div>
                   </div>
                   <div class="col-sm-12">
-                    <div class="form-group md-form">
+                    <div class="form-group md-form" [ngClass]="{ 'has-danger': submitted && f.cPassword.errors }">
                       <label for="cPassword" class="bmd-label-floating">Confirm Password</label>
-                      <input id="cPassword" type="text" class="form-control">
+                      <input formControlName="cPassword" id="cPassword" type="password" class="form-control">
+                      <label *ngIf="submitted && f.cPassword.errors" class="error">
+                        <span *ngIf="f.cPassword.errors.required">Confirm Your Password</span>
+                        <span *ngIf="f.cPassword.errors.MustMatch">Should match with entered password</span>
+                      </label>
                     </div>
                   </div>
                   <div class="col-sm-12">
-                    <div class="form-group md-form">
+                    <div class="form-group md-form" [ngClass]="{ 'has-danger': submitted && f.city.errors }">
                       <label for="city" class="bmd-label-floating">City</label>
-                      <input id="city" type="text" class="form-control">
+                      <input formControlName="city" id="city" type="text" class="form-control">
+                      <label *ngIf="submitted && f.city.errors" class="error">
+                        <span *ngIf="f.city.errors.required">City is required</span>
+                        <span *ngIf="f.city.errors.maxLength">Maximum length is 100 characters</span>
+                        <span *ngIf="f.city.errors.minLength">Should be minimum 2 characters</span>
+                      </label>
                     </div>
                   </div>
                   <div class="col-sm-12">
-                    <div class="form-group md-form">
+                    <div class="form-group md-form" [ngClass]="{ 'has-danger': submitted && f.address.errors }">
                       <label for="address" class="bmd-label-floating">Address</label>
-                      <textarea id="address" type="text" class="form-control"></textarea>
+                      <textarea formControlName="address" id="address" type="text" class="form-control"></textarea>
+                      <label *ngIf="submitted && f.address.errors" class="error">
+                        <span *ngIf="f.address.errors.maxLength">Maximum length is 500 characters</span>
+                      </label>
                     </div>
                   </div>
                 </div>

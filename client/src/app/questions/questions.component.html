@@ -13,8 +13,8 @@
               <div class="inner-card shadow">
                 <div class="row">
                   <div class="col-sm-12">
-                    <div class="form-group md-form">
-                      <label class="bmd-label-floating" [ngClass]="{ 'has-danger': submitted && f.class.errors }">Class</label>
+                    <div class="form-group md-form" [ngClass]="{ 'has-danger': submitted && f.class.errors }">
+                      <label class="bmd-label-floating">Class</label>
                       <ngx-select-dropdown (change)="getAllStreams()" [options]="classesList" formControlName="class" [multiple]="false" [config]="classConfig" class="select-picker"></ngx-select-dropdown>
                       <label *ngIf="submitted && f.class.errors" class="error">
                         <span *ngIf="f.class.errors.required">Select a class</span>
@@ -24,8 +24,8 @@
                 </div>
                 <div class="row">
                   <div class="col-sm-12">
-                    <div class="form-group md-form">
-                      <label class="bmd-label-floating" [ngClass]="{ 'has-danger': submitted && f.stream.errors }">Stream</label>
+                    <div class="form-group md-form" [ngClass]="{ 'has-danger': submitted && f.stream.errors }">
+                      <label class="bmd-label-floating">Stream</label>
                       <ngx-select-dropdown (change)="getAllSubjects()" [options]="streamsList" formControlName="stream" [multiple]="false" [config]="streamConfig" class="select-picker"></ngx-select-dropdown>
                       <label *ngIf="submitted && f.stream.errors" class="error">
                         <span *ngIf="f.stream.errors.required">Select a stream</span>
@@ -35,8 +35,8 @@
                 </div>
                 <div class="row">
                   <div class="col-sm-12">
-                    <div class="form-group md-form">
-                      <label class="bmd-label-floating" [ngClass]="{ 'has-danger': submitted && f.subject.errors }">Subject</label>
+                    <div class="form-group md-form" [ngClass]="{ 'has-danger': submitted && f.subject.errors }">
+                      <label class="bmd-label-floating">Subject</label>
                       <ngx-select-dropdown (change)="getAllTopics()" [options]="subjectsList" formControlName="subject" [multiple]="false" [config]="subjectConfig" class="select-picker"></ngx-select-dropdown>
                       <label *ngIf="submitted && f.subject.errors" class="error">
                         <span *ngIf="f.subject.errors.required">Select a subject</span>
@@ -46,8 +46,8 @@
                 </div>
                 <div class="row">
                   <div class="col-sm-12">
-                    <div class="form-group md-form">
-                      <label class="bmd-label-floating" [ngClass]="{ 'has-danger': submitted && f.topic.errors }">Topic</label>
+                    <div class="form-group md-form" [ngClass]="{ 'has-danger': submitted && f.topic.errors }">
+                      <label class="bmd-label-floating">Topic</label>
                       <ngx-select-dropdown (change)="getAllSections()" [options]="topicsList" formControlName="topic" [multiple]="false" [config]="topicConfig" class="select-picker"></ngx-select-dropdown>
                       <label *ngIf="submitted && f.topic.errors" class="error">
                         <span *ngIf="f.topic.errors.required">Select a topic</span>
@@ -57,8 +57,8 @@
                 </div>
                 <div class="row">
                   <div class="col-sm-12">
-                    <div class="form-group md-form">
-                      <label class="bmd-label-floating" [ngClass]="{ 'has-danger': submitted && f.section.errors }">Section</label>
+                    <div class="form-group md-form" [ngClass]="{ 'has-danger': submitted && f.section.errors }">
+                      <label class="bmd-label-floating">Section</label>
                       <ngx-select-dropdown [options]="sectionsList" formControlName="section" [multiple]="false" [config]="sectionConfig" class="select-picker"></ngx-select-dropdown>
                       <label *ngIf="submitted && f.section.errors" class="error">
                         <span *ngIf="f.section.errors.required">Select a section</span>
@@ -68,8 +68,8 @@
                 </div>
                 <div class="row">
                   <div class="col-sm-12">
-                    <div class="form-group md-form">
-                      <label class="bmd-label-floating" [ngClass]="{ 'has-danger': submitted && f.question.errors }">Question Image</label>
+                    <div class="form-group md-form" [ngClass]="{ 'has-danger': submitted && f.question.errors }">
+                      <label class="bmd-label-floating">Question Image</label>
                       <input accept="image/*" (change)="onFileChange($event)" formControlName="question" name="question" type="file" class="form-control" placeholder="Question image">
                       <label *ngIf="submitted && f.question.errors" class="error">
                         <span *ngIf="f.question.errors.required">Question image is required</span>
@@ -86,8 +86,8 @@
                 </div>
                 <div class="row">
                   <div class="col-sm-12">
-                    <div class="form-group md-form">
-                      <label class="bmd-label-floating" [ngClass]="{ 'has-danger': submitted && f.video.errors }">Video Link</label>
+                    <div class="form-group md-form" [ngClass]="{ 'has-danger': submitted && f.video.errors }">
+                      <label class="bmd-label-floating">Video Link</label>
                       <input formControlName="video" type="text" class="form-control" placeholder="Vide link">
                       <label *ngIf="submitted && f.video.errors" class="error">
                         <span *ngIf="f.video.errors.required">Video link is required</span>

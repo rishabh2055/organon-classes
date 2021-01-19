@@ -1,8 +1,8 @@
 export const DB = {
   HOST: 'localhost',
-  USER: 'organonc_USER',
-  PASSWORD: 'ORg^#$gjhhj3453',
-  DB: 'organonc_DB',
+  USER: 'root',
+  PASSWORD: 'R!$h@bh@2021',
+  DB: 'organon-classes',
   dialect: 'mysql',
   pool: { // pool is optional, it will be used for Sequelize connection pool configuration
     max: 5, // maximum number of connection in pool
