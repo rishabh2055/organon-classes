@@ -38,7 +38,7 @@ export class DashboardComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {
-    if (this.router.getCurrentNavigation().extras.state){
+    if (this.router.getCurrentNavigation() !== null && this.router.getCurrentNavigation().extras.state){
       this.currentTab = this.router.getCurrentNavigation().extras.state.currentPage;
     }
    }

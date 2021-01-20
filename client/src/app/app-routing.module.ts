@@ -8,27 +8,29 @@ import { QuestionsComponent } from './questions/questions.component';
 import { StreamComponent } from './stream/stream.component';
 import { SubjectComponent } from './subject/subject.component';
 import { SectionComponent } from './section/section.component';
+import { LoginComponent } from './login/login.component';
 
 import { AuthGuardService } from './_helpers/auth-guard.service';
 import { LoggedOutGuardSevice } from './_helpers/logged-out.guard.service';
 
 
 const routes: Routes = [
-  {path: '' , pathMatch: 'full' , component: DashboardComponent},
-  {path: 'streams' , component: StreamComponent},
-  {path: 'streams/:id' , component: StreamComponent},
-  {path: 'subjects' , component: SubjectComponent},
-  {path: 'subjects/:id' , component: SubjectComponent},
-  {path: 'users' , component: UsersComponent},
-  {path: 'users/:id' , component: UsersComponent},
-  {path: 'classes' , component: ClassesComponent},
-  {path: 'classes/:id' , component: ClassesComponent},
-  {path: 'topics' , component: TopicsComponent},
-  {path: 'topics/:id' , component: TopicsComponent},
-  {path: 'sections' , component: SectionComponent},
-  {path: 'sections/:id' , component: SectionComponent},
-  {path: 'questions' , component: QuestionsComponent},
-  {path: 'questions/:id' , component: QuestionsComponent},
+  {path: '' , pathMatch: 'full' , component: DashboardComponent, canActivate: [AuthGuardService]},
+  {path: 'login', component: LoginComponent, canActivate: [LoggedOutGuardSevice]},
+  {path: 'streams' , component: StreamComponent, canActivate: [AuthGuardService]},
+  {path: 'streams/:id' , component: StreamComponent, canActivate: [AuthGuardService]},
+  {path: 'subjects' , component: SubjectComponent, canActivate: [AuthGuardService]},
+  {path: 'subjects/:id' , component: SubjectComponent, canActivate: [AuthGuardService]},
+  {path: 'users' , component: UsersComponent, canActivate: [AuthGuardService]},
+  {path: 'users/:id' , component: UsersComponent, canActivate: [AuthGuardService]},
+  {path: 'classes' , component: ClassesComponent, canActivate: [AuthGuardService]},
+  {path: 'classes/:id' , component: ClassesComponent, canActivate: [AuthGuardService]},
+  {path: 'topics' , component: TopicsComponent, canActivate: [AuthGuardService]},
+  {path: 'topics/:id' , component: TopicsComponent, canActivate: [AuthGuardService]},
+  {path: 'sections' , component: SectionComponent, canActivate: [AuthGuardService]},
+  {path: 'sections/:id' , component: SectionComponent, canActivate: [AuthGuardService]},
+  {path: 'questions' , component: QuestionsComponent, canActivate: [AuthGuardService]},
+  {path: 'questions/:id' , component: QuestionsComponent, canActivate: [AuthGuardService]},
   { path: '**', redirectTo: '' }
 ];
 

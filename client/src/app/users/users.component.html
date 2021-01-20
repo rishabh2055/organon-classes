@@ -65,7 +65,7 @@
                   <div *ngIf="f.role.value?.name === 'Student'"  class="col-sm-12">
                     <div class="form-group md-form" [ngClass]="{ 'has-danger': submitted && f.class.errors }">
                       <label for="class" class="bmd-label-floating">Class</label>
-                      <ngx-select-dropdown [options]="classesList" formControlName="class" [multiple]="false" [config]="classConfig" class="select-picker"></ngx-select-dropdown>
+                      <ngx-select-dropdown (change)="getAllStreams()" [options]="classesList" formControlName="class" [multiple]="false" [config]="classConfig" class="select-picker"></ngx-select-dropdown>
                       <label *ngIf="submitted && f.class.errors" class="error">
                         <span *ngIf="f.class.errors.required">Select a class</span>
                       </label>

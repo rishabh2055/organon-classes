@@ -18,7 +18,7 @@ export class LoggedOutGuardSevice implements CanActivate, CanActivateChild {
 
   private check(): boolean {
     if (this.authService.isAuthenticated()) {
-      this.router.navigate(['/']);
+      this.router.navigate(['login']);
       return false;
     }
 

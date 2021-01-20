@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
@@ -16,14 +16,13 @@ export class AuthService {
     this.isLoggedIn.next(this.isAuthenticated());
    }
 
-  authenticate(){
-    return this.http.get<any>(`/api/user/authenticate`);
+  authenticate(postData): Observable<any>{
+    return this.http.post<Observable<any>>(`/api/user/login`, postData);
   }
 
   signout(){
     localStorage.clear();
     this.isLoggedIn.next(this.isAuthenticated());
-    return this.http.get<any>(`/logout`);
   }
 
   setUnauthorizedError(){

@@ -19,25 +19,25 @@ export default class User{
           message: 'Authentication failed. no body provided'
         });
       }
-      const mobileNo = req.body.mobileNo;
+      const email = req.body.email;
       const password = req.body.password;
-      if((mobileNo === '' || mobileNo === undefined) || (password === '' || password === undefined)){
-        console.error('POST .../login failed: mobileNo or password is required');
+      if((email === '' || email === undefined) || (password === '' || password === undefined)){
+        console.error('POST .../login failed: email or password is required');
         return res.status(400).send({
-          message: 'Authentication failed. MobileNo or Password is required'
+          message: 'Authentication failed. email or Password is required'
         });
       }else{
         // Find user details
-        const userDetails = await models.users.findOne({
+        const userDetails = await models.User.findOne({
           where:{
-            mobileNo: mobileNo
+            email: email
           },
           raw: true
         });
         if(!userDetails || !userDetails.id){
-          console.error('POST.../login failed: mobile no not found');
+          console.error('POST.../login failed: email not found');
           return res.status(400).send({
-            message: 'Invalid mobile no or password'
+            message: 'Invalid email or password'
           });
         }else if(!userDetails.isActive){
           console.error(`POST .../login failed: User status is not active`);
@@ -47,22 +47,35 @@ export default class User{
         }else{
           // Password doesn't match
           if(!bcrypt.compareSync(password, userDetails.hash)){
+            // update invalid attempt count
+
+            await models.User.update({
+              invalidAttempt: +userDetails.invalidAttempt + 1
+            },
+            {
+              returning: true,
+              where: {
+                  id: userDetails.id
+              }
+            }
+            );
             console.error("POST.../login failed: password doesn't match");
-          return res.status(400).send({
-            message: 'Invalid mobile no or password'
-          });
+            return res.status(400).send({
+              message: 'Invalid email or password'
+            });
           }else{
             // check lastLogin and firstLogin
             await models.sequelize.transaction(async t => {
               if(userDetails.firstLogin === null){
-                await models.users.update({
+                await models.User.update({
                   firstLogin: true,
-                  lastLogin: now
+                  lastLogin: now,
+                  invalidAttempt: 0
                 },
                 {
                   returning: true,
                   where: {
-                      uid: userDetails.uid
+                      id: userDetails.id
                   },
                   attributes: ['id', 'updated'],
                   transaction: t,
@@ -70,14 +83,15 @@ export default class User{
                 );
                 userDetails.firstLogin = true;
               }else{
-                await models.users.update({
+                await models.User.update({
                   firstLogin: false,
-                  lastLogin: now
+                  lastLogin: now,
+                  invalidAttempt: 0
                 },
                 {
                   returning: true,
                   where: {
-                      uid: userDetails.uid
+                      id: userDetails.id
                   },
                   attributes: ['id', 'updated'],
                   transaction: t,
@@ -120,8 +134,6 @@ export default class User{
         creationDocument = {
           name: req.body.name,
           fName: req.body.fName,
-          email: req.body.email,
-          mobileNo: req.body.mobileNo,
           city: req.body.city,
           role: req.body.role.name,
           dob: req.body.dob,
@@ -194,11 +206,10 @@ export default class User{
           // now save the document
           let creation = await models.User.create(creationDocument, {transaction: t});
           const sanitisedResults = creation.get({plain: true});
-
           if(req.body.role.name === 'Student'){
             //Save student details on table
             let createStudentDocument = {
-              fkUserId: sanitisedResults.ID,
+              fkUserId: sanitisedResults.id,
               fkClassId: req.body.class.id,
               fkStreamId: req.body.stream.id,
               createdOn: now,
@@ -207,7 +218,7 @@ export default class User{
             await models.StudentDetails.create(createStudentDocument, {transaction: t});
           }
           let returnSavedResponse = {
-            id: sanitisedResults.ID,
+            id: sanitisedResults.id,
             createdOn: sanitisedResults.createdOn,
             updatedOn: sanitisedResults.updatedOn
           }
@@ -227,17 +238,26 @@ export default class User{
       const usersList = await models.User.findAll({
         where: {
           isActive: true
-        }
+        },
+        order: [['updatedOn', 'DESC']],
       });
       if(usersList){
         for(let i = 0; i < usersList.length; i++){
-          let userDetails = usersList[i];
+          let userDetails = usersList[i].dataValues;
           if(userDetails && userDetails.role === 'Student'){
             const studentDetails = await models.StudentDetails.findOne({
               where: {
                 fkUserId: userDetails.id
               },
-              raw: true
+              include: [
+          {
+            model: models.Class,
+            as: 'class'
+          },{
+            model: models.Stream,
+            as: 'stream'
+          }
+        ]
             });
             if(studentDetails){
               userDetails.studentDetails = studentDetails;
@@ -262,24 +282,25 @@ export default class User{
     try{
       const userDetails = await models.User.findOne({
         where: {
-          uid: id
+          isActive: 'True',
+          id: req.params.id
         },
-        include: [
-          {
-            model: models.Class,
-            as: 'class'
-          },{
-            model: models.Stream,
-            as: 'stream'
-          }
-        ]
+        raw: true
       });
       if(userDetails && userDetails.role === 'Student'){
         const studentDetails = await models.StudentDetails.findOne({
           where: {
             fkUserId: userDetails.id
           },
-          raw: true
+          include: [
+            {
+              model: models.Class,
+              as: 'class'
+            },{
+              model: models.Stream,
+              as: 'stream'
+            }
+          ]
         });
         if(studentDetails){
           userDetails.studentDetails = studentDetails;

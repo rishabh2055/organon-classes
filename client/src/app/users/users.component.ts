@@ -57,7 +57,8 @@ export class UsersComponent implements OnInit {
   public rolesList: Array<any> = [
     {id: 1, name: 'Admin'},
     {id: 2, name: 'Student'}
-  ]
+  ];
+  public disabledField: Boolean = false;
   constructor(
     private fb: FormBuilder,
     private streamService: StreamService,
@@ -68,13 +69,20 @@ export class UsersComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.userId = params?.id;
+      if(this.userId){
+        this.disabledField = true;
+        this.getUserDetails();
+      }
+    });
     this.userForm = this.fb.group({
       name: [null, [Validators.required, Validators.maxLength(100), Validators.minLength(2)]],
       fName: [null, [Validators.required, Validators.maxLength(100), Validators.minLength(2)]],
       city: [null, [Validators.required, Validators.maxLength(100), Validators.minLength(2)]],
       address: [null, [Validators.maxLength(500), Validators.minLength(2)]],
-      email: [null, [Validators.required, Validators.email]],
-      mobileNo: [null, [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
+      email: [{value: null, disabled: this.disabledField}, [Validators.required, Validators.email]],
+      mobileNo: [{value: null, disabled: this.disabledField}, [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
       password: [null, Validators.minLength(6)],
       cPassword: [null],
       dob: [null, Validators.required],
@@ -101,9 +109,16 @@ export class UsersComponent implements OnInit {
         }
       }
     );
+    this.userForm.get('password').valueChanges.subscribe(
+      pass => {
+        if (pass !== ''){
+          this.userForm.get('cPassword').setValidators([Validators.required]);
+        }
+      }
+    );
     if(this.userId === undefined){
-      this.userForm.get('password').setValidators([Validators.required])
-      this.userForm.get('cPassword').setValidators([Validators.required])
+      this.userForm.get('password').setValidators([Validators.required]);
+      this.userForm.get('cPassword').setValidators([Validators.required]);
     }
   }
 
@@ -166,15 +181,15 @@ export class UsersComponent implements OnInit {
     const postObj = {
       userId: this.userId,
       name: this.f.name.value,
-      email: this.f.email.value,
+      email: (this.userId !== undefined) ? '': this.f.email.value,
       class: this.f.class.value,
       stream: this.f.stream.value,
       fName: this.f.fName.value,
       city: this.f.city.value,
       address: this.f.address.value,
       password: this.f.password.value,
-      mobileNo: this.f.mobileNo.value,
-      dob: this.f.mobileNo.value,
+      mobileNo: (this.userId !== undefined) ? '': this.f.mobileNo.value,
+      dob: this.f.dob.value,
       role: this.f.role.value
     };
 
@@ -211,8 +226,9 @@ export class UsersComponent implements OnInit {
           fName: response.fName,
           city: response.city,
           address: response.address,
-          dob: response.mobileNo,
-          role: (response.role === 'Admin') ? this.rolesList[0]: this.rolesList[1]
+          dob: new Date(response.dob),
+          role: (response.role === 'Admin') ? this.rolesList[0]: this.rolesList[1],
+          mobileNo: response.mobileNo
         });
       },
       (error) => {

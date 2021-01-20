@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { LoginService } from '../_utils/login.service';
-
+import { AuthService } from '../_utils/auth.service';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
@@ -16,11 +16,11 @@ export class LoginComponent implements OnInit {
   public disableSubmit: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
-    private loginService: LoginService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    location.reload();
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -30,20 +30,20 @@ export class LoginComponent implements OnInit {
   // convenience getter for easy access to form fields
   get f() { return this.loginForm.controls; }
 
-  onSubmit(){
+  onSubmit(): void {
     this.submitted = true;
 
     // stop here if form is invalid
     if (this.loginForm.invalid) {
       return;
     }
-
-    this.loginService.doLogin(this.loginForm.value).subscribe(
+    this.authService.authenticate(this.loginForm.value).subscribe(
       (response) => {
-
-      },
-      (error) => {
-
+        this.authService.saveToken(response.accessToken);
+        this.authService.saveUser(response.user);
+        this.router.navigate(['/dashboard']);
+      }, (error) => {
+        Swal.fire('Oops...', error.error.message, 'error');
       }
     );
   }

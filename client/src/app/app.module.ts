@@ -13,8 +13,8 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
-//import { LoginComponent } from './login/login.component';
-//import { AuthInterceptor } from './_helpers/auth.interceptor.service';
+import { LoginComponent } from './login/login.component';
+import { AuthInterceptor } from './_helpers/auth.interceptor.service';
 import { UsersComponent } from './users/users.component';
 import { ClassesComponent } from './classes/classes.component';
 import { TopicsComponent } from './topics/topics.component';
@@ -29,7 +29,7 @@ import { SubjectComponent } from './subject/subject.component';
     HeaderComponent,
     SidebarComponent,
     DashboardComponent,
-   // LoginComponent,
+    LoginComponent,
     UsersComponent,
     ClassesComponent,
     TopicsComponent,
@@ -51,13 +51,13 @@ import { SubjectComponent } from './subject/subject.component';
     FileUploadModule
   ],
   exports: [],
-  // providers: [
-  //   {
-  //     provide: HTTP_INTERCEPTORS,
-  //     useClass: AuthInterceptor,
-  //     multi: true
-  //   }
-  // ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   entryComponents: [],
   bootstrap: [AppComponent]
 })

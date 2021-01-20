@@ -1,7 +1,12 @@
-<div class="wrapper">
+<div class="wrapper" *ngIf="currentRoute !== '/login'">
   <app-sidebar></app-sidebar>
   <div class="main-panel">
     <app-header></app-header>
     <router-outlet></router-outlet>
   </div>
+</div>
+
+<div class="wrapper" *ngIf="currentRoute === '/login'">
+  <app-header></app-header>
+  <router-outlet></router-outlet>
 </div>

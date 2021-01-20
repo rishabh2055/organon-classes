@@ -1,4 +1,4 @@
-<!-- <div class="container">
+<div class="container">
   <div class="row">
     <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto login-pad">
       <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
@@ -16,7 +16,7 @@
                     </span>
                   </div>
                   <input id="email" type="text" formControlName="email" class="form-control" placeholder="Email">
-                  <div *ngIf="submitted && f.email.errors" class="error">
+                  <div *ngIf="submitted && f.email.errors" class="error login-error">
                     <span *ngIf="f.email.errors.required">Email is required</span>
                     <span *ngIf="f.email.errors.email">Should be a valid email</span>
                   </div>
@@ -30,7 +30,7 @@
                     </span>
                   </div>
                   <input id="password" type="password" formControlName="password" class="form-control" placeholder="Password">
-                  <div *ngIf="submitted && f.password.errors" class="error">
+                  <div *ngIf="submitted && f.password.errors" class="error login-error">
                     <span *ngIf="f.email.errors.required">Password is required</span>
                   </div>
                 </div>
@@ -44,4 +44,4 @@
       </form>
     </div>
   </div>
-</div> -->
+</div>
