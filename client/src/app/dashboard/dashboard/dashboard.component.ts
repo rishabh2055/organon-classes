@@ -11,6 +11,7 @@ import { TopicService } from '../../_utils/topic.service';
 import { SectionService } from '../../_utils/section.service';
 import { QuestionService } from '../../_utils/question.service';
 import { UserService } from '../../_utils/user.service';
+import { AuthService } from '../../_utils/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -51,9 +52,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private sectionService: SectionService,
     private questionService: QuestionService,
     private userService: UserService,
+    private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute
   ) {
+    if(this.authService.getUser().role === 'Student'){
+      this.router.navigate([`student`]);
+    }
     if (this.router.getCurrentNavigation() !== null && this.router.getCurrentNavigation().extras.state){
       this.currentTab = this.router.getCurrentNavigation().extras.state.currentPage;
     }

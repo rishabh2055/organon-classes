@@ -9,6 +9,7 @@ import { SubjectService } from '../_utils/subject.service';
 import { TopicService } from '../_utils/topic.service';
 import { SectionService } from '../_utils/section.service';
 import { QuestionService } from '../_utils/question.service';
+import { AuthService } from '../_utils/auth.service';
 
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 
@@ -91,11 +92,16 @@ export class QuestionsComponent implements OnInit {
     private topicService: TopicService,
     private sectionService: SectionService,
     private questionService: QuestionService,
+    private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router,
     private location: Location,
     private sanitizer: DomSanitizer
-  ) { }
+  ) {
+    if(this.authService.getUser().role === 'Student'){
+      this.router.navigate([`student`]);
+    }
+   }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
