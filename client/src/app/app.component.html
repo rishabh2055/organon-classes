@@ -1,6 +1,6 @@
 <div class="wrapper">
   <app-sidebar></app-sidebar>
-  <div [ngClass]="{'main-panel': currentRoute !== '/student'}">
+  <div [ngClass]="{'main-panel': userDetails?.role !== 'Student'}">
     <app-header></app-header>
     <router-outlet></router-outlet>
   </div>

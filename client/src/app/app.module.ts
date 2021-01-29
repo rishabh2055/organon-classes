@@ -25,6 +25,7 @@ import { StreamComponent } from './stream/stream.component';
 import { SectionComponent } from './section/section.component';
 import { SubjectComponent } from './subject/subject.component';
 import { StudentComponent } from './student/student.component';
+import { StudentProfileComponent } from './student-profile/student-profile.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { StudentComponent } from './student/student.component';
     StreamComponent,
     SectionComponent,
     SubjectComponent,
-    StudentComponent
+    StudentComponent,
+    StudentProfileComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

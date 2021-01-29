@@ -1,6 +1,8 @@
-/* .student-section{
-  padding-top:5.3%;
-} */
+.student-section{
+  height: 100vh;
+  overflow: auto;
+  max-height: 100vh;
+}
 .student-section .row{
   margin: 0 !important;
 }

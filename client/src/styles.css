@@ -101,7 +101,7 @@ div.error {
 .student-section .ngx-dropdown-container button .nsdicon-angle-down {
   top: 6px;
 }
-.student-section input{
+.student-section input, .student-section textarea{
   background: #fff;
   border: 2px solid #fff;
   font-size: 15px;
@@ -139,19 +139,23 @@ div.error {
     padding-top:15.3%;
   }
   .question-image {
-    height: 36vh;
+    height: 36vh !important;
   }
   .question-image img{
-    height: 30vh;
+    height: 30vh !important;
   }
   .question-title{
-    height:48px;
+    height:48px !important;
   }
   *{
-    font-size:12px !important;
+    font-size:13px !important;
   }
   .ngx-dropdown-container{
     width: 90%;
+  }
+  .card [class*="card-header-"] .card-icon, .card [class*="card-header-"] .card-text{
+    height: 40px;
+    padding: 8px 15px !important;
   }
 }
 @media only screen and (max-width: 600px) and (min-width: 500px) {
@@ -159,10 +163,14 @@ div.error {
     padding-top:13.3%;
   }
   .question-image {
-    height: 40vh;
+    height: 40vh !important;
   }
   .question-image img{
-    height: 35vh;
+    height: 35vh !important;
+  }
+  .card [class*="card-header-"] .card-icon, .card [class*="card-header-"] .card-text{
+    height: 45px;
+    padding: 10px 15px !important;
   }
 }
 
@@ -172,10 +180,14 @@ div.error {
     padding-top:11.3%;
   }
   .question-image {
-    height: 45vh;
+    height: 45vh !important;
   }
   .question-image img{
-    height: 40vh;
+    height: 40vh !important;
+  }
+  .card [class*="card-header-"] .card-icon, .card [class*="card-header-"] .card-text{
+    height: 50px;
+    padding: 10px 15px !important;
   }
 }
 
@@ -185,23 +197,27 @@ div.error {
     padding-top:9.3%;
   }
   .question-image {
-    height: 68vh;
+    height: 68vh !important;
   }
   .question-image img{
-    height: 65vh;
+    height: 65vh !important;
+  }
+  .card [class*="card-header-"] .card-icon, .card [class*="card-header-"] .card-text{
+    height: 50px;
+    padding: 12px 15px !important;
   }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (max-width: 1200px) and (min-width: 992px)  {
   .student-section{
-    padding-top:6.3%;
+    padding-top:7.3%;
   }
   .question-image {
-    height: 68vh;
+    height: 68vh !important;
   }
   .question-image img{
-    height: 65vh;
+    height: 65vh !important;
   }
 }
 

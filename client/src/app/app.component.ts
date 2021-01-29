@@ -10,6 +10,7 @@ import { AuthService } from './_utils/auth.service';
 export class AppComponent implements OnInit {
   title = 'Organon Classes';
   currentRoute: string;
+  userDetails: any;
   constructor(
     private router: Router,
     private location: Location,
@@ -21,6 +22,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.userDetails = this.authService.getUser();
   }
 }

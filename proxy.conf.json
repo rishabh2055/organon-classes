@@ -1,0 +1,7 @@
+{
+    "/api/*": {
+        "target": "http:organonclasses.info",
+        "secure": false,
+        "changeOrigin": true
+    }
+}

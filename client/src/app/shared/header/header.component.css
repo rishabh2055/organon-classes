@@ -1,9 +1,20 @@
-.navbar .navbar-nav .nav-item .nav-link{
+.user-info .username{
   border-radius:  50% !important;
-  background-color: #1e19b0;
-  line-height: 16px !important;
+  background: #BBDEFB;
+  padding: 11px;
   font-size: 16px !important;
   -webkit-box-shadow: -1px 1px 5px 0px rgba(30,25,176,1);
   -moz-box-shadow: -1px 1px 5px 0px rgba(30,25,176,1);
   box-shadow: -1px 1px 5px 0px rgba(30,25,176,1);
+}
+.collapse{
+  background-color: #fff;
+  position: absolute;
+  right: 15px;
+  top: 60px;
+}
+.sidebar-normal{
+  position: relative;
+  top: 2px;
+  left: 6px;
 }
