@@ -117,7 +117,7 @@ export class StudentComponent implements OnInit {
     this.showBackBtn = false;
   }
 
-  getAllTopics() {debugger
+  getAllTopics() {
     this.topicService.getAllTopicListByClassAndStream(this.userDetails.studentDetails).subscribe(
       (response) => {
         response.map(res => res.checked = false);
@@ -129,7 +129,7 @@ export class StudentComponent implements OnInit {
     );
   }
 
-  getAllSubjects() {debugger
+  getAllSubjects() {
     this.subjectService.getAllSubjectList(this.userDetails.studentDetails.stream).subscribe(
       (response) => {
         response.map(res => res.checked = false);

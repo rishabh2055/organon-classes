@@ -17,9 +17,9 @@
           <span>{{firstName.toUpperCase().charAt(0)}}{{lastName.toUpperCase().charAt(0)}}</span>
         </a>
         <div class="collapse" [class.show]="isCollapsed" (collapsed)="collapsed($event)" (expanded)="expanded($event)">
-          <ul class="nav" style="display: block;" (click)="isCollapsed = !isCollapsed">
+          <ul class="nav" style="display: block;">
             <li class="nav-item" style="background-color: #f5f5f5;">
-              <a class="nav-link" routerLink = "profile/{{userDetails?.id}}">
+              <a class="nav-link" routerLink = "profile/{{userDetails?.id}}"  (click)="isCollapsed = !isCollapsed">
                 <span class="sidebar-mini"> <i class="material-icons">person</i></span>
                 <span class="sidebar-normal">Profile</span>
               </a>
