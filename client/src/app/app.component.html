@@ -1,12 +1,7 @@
-<div class="wrapper" *ngIf="currentRoute !== '/login'">
+<div class="wrapper">
   <app-sidebar></app-sidebar>
-  <div class="main-panel">
+  <div [ngClass]="{'main-panel': currentRoute !== '/student'}">
     <app-header></app-header>
     <router-outlet></router-outlet>
   </div>
-</div>
-
-<div class="wrapper" *ngIf="currentRoute === '/login'">
-  <app-header></app-header>
-  <router-outlet></router-outlet>
 </div>

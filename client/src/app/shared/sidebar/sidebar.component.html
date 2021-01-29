@@ -1,4 +1,4 @@
-<div class="sidebar" data-color="rose">
+<div class="sidebar" data-color="rose" [hidden]="!isLoggedIn || userDetails?.role === 'Student'">
   <!--
     Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 

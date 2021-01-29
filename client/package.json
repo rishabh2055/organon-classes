@@ -15,6 +15,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~11.0.9",
+    "@angular/cdk": "^11.1.0",
     "@angular/common": "~11.0.9",
     "@angular/compiler": "~11.0.9",
     "@angular/core": "~11.0.9",
@@ -24,6 +25,7 @@
     "@angular/router": "~11.0.9",
     "@nguniversal/express-engine": "^9.1.1",
     "@nguniversal/module-map-ngfactory-loader": "^8.2.6",
+    "angular-datatables": "^10.1.0",
     "bootstrap": "^4.5.1",
     "datatables.net": "^1.10.21",
     "datatables.net-dt": "^1.10.21",
@@ -31,6 +33,7 @@
     "moment": "^2.27.0",
     "ng2-file-upload": "^1.4.0",
     "ngx-bootstrap": "^5.6.1",
+    "ngx-bootstrap-navbar": "0.0.5",
     "ngx-select-dropdown": "^1.4.4",
     "peer": "^0.5.3",
     "rxjs": "~6.5.4",

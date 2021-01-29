@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 declare const $;
 
@@ -16,7 +17,7 @@ import { UserService } from '../../_utils/user.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
   public currentTab: String = 'Classes';
   public isAllChecked: Boolean = false;
   public classList: Array<any>;
@@ -27,6 +28,21 @@ export class DashboardComponent implements OnInit {
   public questionList: Array<any>;
   public userList: Array<any>;
   public checkedList: Array<any> = [];
+  public dtClassOptions: DataTables.Settings = {};
+  public dtStreamOptions: DataTables.Settings = {};
+  public dtSubjectOptions: DataTables.Settings = {};
+  public dtTopicOptions: DataTables.Settings = {};
+  public dtQuestionOptions: DataTables.Settings = {};
+  public dtUserOptions: DataTables.Settings = {};
+  public dtSectionOptions: DataTables.Settings = {};
+  public dtClassTrigger: Subject<any> = new Subject<any>();
+  public dtStreamTrigger: Subject<any> = new Subject<any>();
+  public dtSubjectTrigger: Subject<any> = new Subject<any>();
+  public dtSectionTrigger: Subject<any> = new Subject<any>();
+  public dtTopicTrigger: Subject<any> = new Subject<any>();
+  public dtQuestionTrigger: Subject<any> = new Subject<any>();
+  public dtUserTrigger: Subject<any> = new Subject<any>();
+  public updateTableOnly: Boolean = false;
   constructor(
     private classService: ClassService,
     private streamService: StreamService,
@@ -44,6 +60,41 @@ export class DashboardComponent implements OnInit {
    }
 
    ngOnInit(): void {
+    this.dtClassOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 5,
+      processing: true
+    };
+    this.dtStreamOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 5,
+      processing: true
+    };
+    this.dtSubjectOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 5,
+      processing: true
+    };
+    this.dtQuestionOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 5,
+      processing: true
+    };
+    this.dtSectionOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 5,
+      processing: true
+    };
+    this.dtTopicOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 5,
+      processing: true
+    };
+    this.dtUserOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 5,
+      processing: true
+    };
     this.getAllClasses();
   }
 
@@ -52,32 +103,23 @@ export class DashboardComponent implements OnInit {
     this.currentTab = tab;
   }
 
+  ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtClassTrigger.unsubscribe();
+    this.dtStreamTrigger.unsubscribe();
+    this.dtSubjectTrigger.unsubscribe();
+    this.dtTopicTrigger.unsubscribe();
+    this.dtSectionTrigger.unsubscribe();
+    this.dtQuestionTrigger.unsubscribe();
+    this.dtUserTrigger.unsubscribe();
+  }
+
   getAllClasses() {
-    if ($.fn.DataTable.isDataTable('#classDatatables')) {
-      $('#classDatatables').DataTable().destroy();
-    }
     this.classService.getAllClasses().subscribe(
       (response) => {
         response.classes.map(res => res.checked = false);
         this.classList = response.classes;
-        setTimeout(() => {
-          const classTable = $('#classDatatables').DataTable({
-            'pagingType': 'full_numbers',
-            'lengthMenu': [
-              [10, 25, 50, -1],
-              [10, 25, 50, 'All']
-            ],
-            responsive: true,
-            language: {
-              search: '_INPUT_',
-              searchPlaceholder: 'Search records',
-            },
-            order: [],
-            columnDefs: [
-              { orderable: false, targets: [0] }
-            ]
-          });
-        }, 1000);
+        this.dtClassTrigger.next();
         this.getAllStreams();
       },
       (error) => {
@@ -86,31 +128,11 @@ export class DashboardComponent implements OnInit {
     );
   }
   getAllStreams() {
-    if ($.fn.DataTable.isDataTable('#streamDatatables')) {
-      $('#streamDatatables').DataTable().destroy();
-    }
     this.streamService.getAllStreams().subscribe(
       (response) => {
         response.map(res => res.checked = false);
         this.streamList = response;
-        setTimeout(() => {
-          const streamTable = $('#streamDatatables').DataTable({
-            'pagingType': 'full_numbers',
-            'lengthMenu': [
-              [10, 25, 50, -1],
-              [10, 25, 50, 'All']
-            ],
-            responsive: true,
-            language: {
-              search: '_INPUT_',
-              searchPlaceholder: 'Search records',
-            },
-            order: [],
-            columnDefs: [
-              { orderable: false, targets: [0] }
-            ]
-          });
-        }, 1000);
+        this.dtStreamTrigger.next();
         this.getAllSubjects();
       },
       (error) => {
@@ -119,31 +141,11 @@ export class DashboardComponent implements OnInit {
     );
   }
   getAllSubjects() {
-    if ($.fn.DataTable.isDataTable('#subjectDatatables')) {
-      $('#subjectDatatables').DataTable().destroy();
-    }
     this.subjectService.getAllSubjects().subscribe(
       (response) => {
         response.map(res => res.checked = false);
         this.subjectList = response;
-        setTimeout(() => {
-          const streamTable = $('#subjectDatatables').DataTable({
-            'pagingType': 'full_numbers',
-            'lengthMenu': [
-              [10, 25, 50, -1],
-              [10, 25, 50, 'All']
-            ],
-            responsive: true,
-            language: {
-              search: '_INPUT_',
-              searchPlaceholder: 'Search records',
-            },
-            order: [],
-            columnDefs: [
-              { orderable: false, targets: [0] }
-            ]
-          });
-        }, 1000);
+        this.dtSubjectTrigger.next();
         this.getAllTopics();
       },
       (error) => {
@@ -153,31 +155,11 @@ export class DashboardComponent implements OnInit {
   }
 
   getAllTopics() {
-    if ($.fn.DataTable.isDataTable('#topicDatatables')) {
-      $('#topicDatatables').DataTable().destroy();
-    }
     this.topicService.getAllTopics().subscribe(
       (response) => {
         response.map(res => res.checked = false);
         this.topicList = response;
-        setTimeout(() => {
-          const topicTable = $('#topicDatatables').DataTable({
-            'pagingType': 'full_numbers',
-            'lengthMenu': [
-              [10, 25, 50, -1],
-              [10, 25, 50, 'All']
-            ],
-            responsive: true,
-            language: {
-              search: '_INPUT_',
-              searchPlaceholder: 'Search records',
-            },
-            order: [],
-            columnDefs: [
-              { orderable: false, targets: [0] }
-            ]
-          });
-        }, 1000);
+        this.dtTopicTrigger.next();
         this.getAllSections();
       },
       (error) => {
@@ -187,31 +169,11 @@ export class DashboardComponent implements OnInit {
   }
 
   getAllSections() {
-    if ($.fn.DataTable.isDataTable('#sectionDatatables')) {
-      $('#sectionDatatables').DataTable().destroy();
-    }
     this.sectionService.getAllSections().subscribe(
       (response) => {
         response.map(res => res.checked = false);
         this.sectionList = response;
-        setTimeout(() => {
-          const sectionTable = $('#sectionDatatables').DataTable({
-            'pagingType': 'full_numbers',
-            'lengthMenu': [
-              [10, 25, 50, -1],
-              [10, 25, 50, 'All']
-            ],
-            responsive: true,
-            language: {
-              search: '_INPUT_',
-              searchPlaceholder: 'Search records',
-            },
-            order: [],
-            columnDefs: [
-              { orderable: false, targets: [0] }
-            ]
-          });
-        }, 1000);
+        this.dtSectionTrigger.next();
         this.getAllQuestions();
       },
       (error) => {
@@ -221,31 +183,11 @@ export class DashboardComponent implements OnInit {
   }
 
   getAllQuestions() {
-    if ($.fn.DataTable.isDataTable('#questionDatatables')) {
-      $('#questionDatatables').DataTable().destroy();
-    }
     this.questionService.getAllQuestions().subscribe(
       (response) => {
         response.map(res => res.checked = false);
         this.questionList = response;
-        setTimeout(() => {
-          const questionTable = $('#questionDatatables').DataTable({
-            'pagingType': 'full_numbers',
-            'lengthMenu': [
-              [10, 25, 50, -1],
-              [10, 25, 50, 'All']
-            ],
-            responsive: true,
-            language: {
-              search: '_INPUT_',
-              searchPlaceholder: 'Search records',
-            },
-            order: [],
-            columnDefs: [
-              { orderable: false, targets: [0] }
-            ]
-          });
-        }, 1000);
+        this.dtQuestionTrigger.next();
         this.getAllUsers();
       },
       (error) => {
@@ -255,31 +197,11 @@ export class DashboardComponent implements OnInit {
   }
 
   getAllUsers() {
-    if ($.fn.DataTable.isDataTable('#userDatatables')) {
-      $('#userDatatables').DataTable().destroy();
-    }
     this.userService.getAllUsers().subscribe(
       (response) => {
         response.map(res => res.checked = false);
         this.userList = response;
-        setTimeout(() => {
-          const userTable = $('#userDatatables').DataTable({
-            'pagingType': 'full_numbers',
-            'lengthMenu': [
-              [10, 25, 50, -1],
-              [10, 25, 50, 'All']
-            ],
-            responsive: true,
-            language: {
-              search: '_INPUT_',
-              searchPlaceholder: 'Search records',
-            },
-            order: [],
-            columnDefs: [
-              { orderable: false, targets: [0] }
-            ]
-          });
-        }, 1000);
+        this.dtUserTrigger.next();
       },
       (error) => {
         Swal.fire('Oops...', error.error.message, 'error');
@@ -309,6 +231,7 @@ export class DashboardComponent implements OnInit {
               'Deleted Successfully!',
               'success'
             );
+            this.dtClassTrigger.unsubscribe();
             this.getAllClasses();
           }, (error) => {
             Swal.fire('Oops...', error.error.message, 'error');
@@ -340,6 +263,7 @@ export class DashboardComponent implements OnInit {
               'Deleted Successfully!',
               'success'
             );
+            this.dtStreamTrigger.unsubscribe();
             this.getAllStreams();
           }, (error) => {
             Swal.fire('Oops...', error.error.message, 'error');
@@ -371,6 +295,7 @@ export class DashboardComponent implements OnInit {
               'Deleted Successfully!',
               'success'
             );
+            this.dtSubjectTrigger.unsubscribe();
             this.getAllSubjects();
           }, (error) => {
             Swal.fire('Oops...', error.error.message, 'error');
@@ -402,6 +327,7 @@ export class DashboardComponent implements OnInit {
               'Deleted Successfully!',
               'success'
             );
+            this.dtTopicTrigger.unsubscribe();
             this.getAllTopics();
           }, (error) => {
             Swal.fire('Oops...', error.error.message, 'error');
@@ -433,6 +359,7 @@ export class DashboardComponent implements OnInit {
               'Deleted Successfully!',
               'success'
             );
+            this.dtSectionTrigger.unsubscribe();
             this.getAllSections();
           }, (error) => {
             Swal.fire('Oops...', error.error.message, 'error');
@@ -464,6 +391,7 @@ export class DashboardComponent implements OnInit {
               'Deleted Successfully!',
               'success'
             );
+            this.dtQuestionTrigger.unsubscribe();
             this.getAllQuestions();
           }, (error) => {
             Swal.fire('Oops...', error.error.message, 'error');
@@ -495,6 +423,7 @@ export class DashboardComponent implements OnInit {
               'Deleted Successfully!',
               'success'
             );
+            this.dtUserTrigger.unsubscribe();
             this.getAllUsers();
           }, (error) => {
             Swal.fire('Oops...', error.error.message, 'error');

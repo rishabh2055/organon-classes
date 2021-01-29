@@ -2,7 +2,7 @@
 @import "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons";
 
 .main-panel .content {
-  padding: 30px 15px;
+  padding: 40px 15px;
   min-height: calc(100vh - 123px);
 }
 .has-danger input::placeholder,
@@ -38,7 +38,7 @@ div.error {
   border-top: none !important;
   border-right: none !important;
   border-left: none !important;
-  border-radius: 0 !important;
+  border-radius: 4px !important;
 }
 .btn-add {
   padding: 8px 8px 8px 0px !important;
@@ -91,4 +91,122 @@ div.error {
   opacity: 1 !important;
     position: relative !important;
     z-index: 1000 !important;
+}
+
+.student-section .ngx-dropdown-container{
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+  -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+  -moz-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+}
+.student-section .ngx-dropdown-container button .nsdicon-angle-down {
+  top: 6px;
+}
+.student-section input{
+  background: #fff;
+  border: 2px solid #fff;
+  font-size: 15px;
+  font-weight: 400;
+  color: #333;
+  padding: 22px 10px;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+}
+.ngx-dropdown-container .ngx-dropdown-button {
+  padding: 12px !important;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 500px) and (min-width: 300px) {
+  .student-section{
+    padding-top:15.3%;
+  }
+  .question-image {
+    height: 36vh;
+  }
+  .question-image img{
+    height: 30vh;
+  }
+  .question-title{
+    height:48px;
+  }
+  *{
+    font-size:12px !important;
+  }
+  .ngx-dropdown-container{
+    width: 90%;
+  }
+}
+@media only screen and (max-width: 600px) and (min-width: 500px) {
+  .student-section{
+    padding-top:13.3%;
+  }
+  .question-image {
+    height: 40vh;
+  }
+  .question-image img{
+    height: 35vh;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) and (min-width: 600px) {
+  .student-section{
+    padding-top:11.3%;
+  }
+  .question-image {
+    height: 45vh;
+  }
+  .question-image img{
+    height: 40vh;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) and (min-width: 768px)  {
+  .student-section{
+    padding-top:9.3%;
+  }
+  .question-image {
+    height: 68vh;
+  }
+  .question-image img{
+    height: 65vh;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (max-width: 1200px) and (min-width: 992px)  {
+  .student-section{
+    padding-top:6.3%;
+  }
+  .question-image {
+    height: 68vh;
+  }
+  .question-image img{
+    height: 65vh;
+  }
+}
+
+@media only screen and (min-width: 1200px){
+  .student-section{
+    padding-top:5.3%;
+  }
 }

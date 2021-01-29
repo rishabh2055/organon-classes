@@ -3,7 +3,8 @@ import models from '../models';
 export const checkDuplicateMobileNoOrEmail = async (req, res, next) => {
   const checkForMobileNo = await models.User.findOne({
     where:{
-      mobileNo: req.body.mobileNo
+      mobileNo: req.body.mobileNo,
+      isActive: true
     }
   });
   if(checkForMobileNo && checkForMobileNo.id){
@@ -14,7 +15,8 @@ export const checkDuplicateMobileNoOrEmail = async (req, res, next) => {
   }else{
     const checkForEmail = await models.User.findOne({
       where:{
-        email: req.body.email
+        email: req.body.email,
+        isActive: true
       }
     });
     if(checkForEmail && checkForEmail.id){

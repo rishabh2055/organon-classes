@@ -87,15 +87,27 @@ export default class Section{
         include: [
           {
             model: models.Class,
+            where: {
+              isActive: 'True'
+            },
             as: 'class'
           },{
             model: models.Stream,
+            where: {
+              isActive: 'True'
+            },
             as: 'stream'
           },{
             model: models.Subject,
+            where: {
+              isActive: 'True'
+            },
             as: 'subject'
           },{
             model: models.Topic,
+            where: {
+              isActive: 'True'
+            },
             as: 'topic'
           }
         ]
@@ -141,15 +153,27 @@ export default class Section{
         include: [
           {
             model: models.Class,
+            where: {
+              isActive: 'True'
+            },
             as: 'class'
           },{
             model: models.Stream,
+            where: {
+              isActive: 'True'
+            },
             as: 'stream'
           },{
             model: models.Subject,
+            where: {
+              isActive: 'True'
+            },
             as: 'subject'
           },{
             model: models.Topic,
+            where: {
+              isActive: 'True'
+            },
             as: 'topic'
           }
         ]

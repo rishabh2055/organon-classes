@@ -41,7 +41,11 @@ export class LoginComponent implements OnInit {
       (response) => {
         this.authService.saveToken(response.accessToken);
         this.authService.saveUser(response.user);
-        this.router.navigate(['/dashboard']);
+        if(response.user.role === 'Admin'){
+          this.router.navigate(['/dashboard']);
+        }else{
+          this.router.navigate(['/student']);
+        }
       }, (error) => {
         Swal.fire('Oops...', error.error.message, 'error');
       }

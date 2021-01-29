@@ -30,7 +30,8 @@ export default class User{
         // Find user details
         const userDetails = await models.User.findOne({
           where:{
-            email: email
+            email: email,
+            isActive: true
           },
           raw: true
         });
@@ -105,6 +106,29 @@ export default class User{
             const token = jwt.sign(userDetails, config.secret, {
               expiresIn: expiresIn
             });
+            if(userDetails && userDetails.role === 'Student'){
+              const studentDetails = await models.StudentDetails.findOne({
+                where: {
+                  fkUserId: userDetails.id
+                },
+                include: [
+                  {
+                    model: models.Class,
+                    as: 'class'
+                  },{
+                    model: models.Stream,
+                    as: 'stream'
+                  }
+                ]
+              });
+              if(studentDetails){
+                userDetails.studentDetails = studentDetails;
+              }else{
+                userDetails.studentDetails = {};
+              }
+            }else{
+              userDetails.studentDetails = {};
+            }
             res.status(200).send({
               user: userDetails,
               accessToken: token
@@ -165,7 +189,7 @@ export default class User{
               fkStreamId: req.body.stream.id,
               updatedOn: now
             }
-            await models.StudentDetails.update(creationDocument,
+            await models.StudentDetails.update(createStudentDocument,
               {
                 returning: true,
                 where: {
@@ -237,7 +261,7 @@ export default class User{
     try{
       const usersList = await models.User.findAll({
         where: {
-          isActive: true
+          isActive: 'True'
         },
         order: [['updatedOn', 'DESC']],
       });
@@ -252,9 +276,15 @@ export default class User{
               include: [
           {
             model: models.Class,
+            where: {
+              isActive: 'True'
+            },
             as: 'class'
           },{
             model: models.Stream,
+            where: {
+              isActive: 'True'
+            },
             as: 'stream'
           }
         ]
@@ -295,9 +325,15 @@ export default class User{
           include: [
             {
               model: models.Class,
+              where: {
+                isActive: 'True'
+              },
               as: 'class'
             },{
               model: models.Stream,
+              where: {
+                isActive: 'True'
+              },
               as: 'stream'
             }
           ]

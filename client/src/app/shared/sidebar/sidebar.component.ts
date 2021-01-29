@@ -10,13 +10,22 @@ import { AuthService } from '../../_utils/auth.service';
 export class SidebarComponent implements OnInit {
   public isCollapsed: boolean = false;
   public userDetails: any;
+  isLoggedIn: Boolean = false;
   constructor(
     private authService: AuthService,
     private router: Router
-  ) { }
+  ) {
+   }
 
-  ngOnInit(): void {
-    this.getAuthenticationDetails();
+   ngOnInit(): void {
+    this.authService.isLoggedInDetails.subscribe(
+      isAuthorized => {
+        this.isLoggedIn = isAuthorized;
+        if(this.isLoggedIn){
+          this.getAuthenticationDetails();
+        }
+      }
+    );
   }
 
   getAuthenticationDetails(){

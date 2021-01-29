@@ -1,14 +1,14 @@
 import { Router } from 'express';
-import path from 'path';
 const router = new Router();
 
 import User from '../controllers/user';
+import * as authReq from '../middlewares/authJWT';
 import {checkDuplicateMobileNoOrEmail} from '../middlewares/verifyUser';
 
 router.post('/login', User.login);
-router.post('/add', [checkDuplicateMobileNoOrEmail], User.addEditUser);
-router.get('/all', User.getAllUsers);
-router.get('/:id', User.getUser);
-router.get('/delete/:id', User.deleteUser);
+router.post('/add', [authReq.verifyToken, checkDuplicateMobileNoOrEmail], User.addEditUser);
+router.get('/all', [authReq.verifyToken], User.getAllUsers);
+router.get('/:id', [authReq.verifyToken], User.getUser);
+router.get('/delete/:id', [authReq.verifyToken], User.deleteUser);
 
 export default router;

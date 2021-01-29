@@ -1,0 +1,149 @@
+<div class="content student-section">
+  <button *ngIf="showBackBtn" (click)="goBack()" class="btn btn-danger back-btn" (mouseenter)="onBackBtnHover($event, 'Enter')"  (mouseout)="onBackBtnHover($event, 'Out')">
+    Go Back
+    <span class="btn-label">
+      <i class="material-icons">keyboard_backspace</i>
+    </span>
+    <div class="ripple-container"></div>
+  </button>
+  <div class="container-fluid">
+    <div class="row" *ngIf="!showQuestionDetails">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header card-header-rose card-header-text">
+            <div class="card-text">
+              <h4 class="card-title">Welcome {{userDetails.name}}</h4>
+            </div>
+          </div>
+          <div class="card-body">
+            <figure class="highlight">
+              <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+                <div class="row justify-content-md-center">
+                  <div class="col-md-3 col-sm-12">
+                    <div class="form-group md-form">
+                      <input id="name" formControlName="class" type="text" class="form-control" placeholder="Class name">
+                    </div>
+                  </div>
+                  <div class="col-md-3 col-sm-12">
+                    <div class="form-group md-form">
+                      <input id="name" formControlName="stream" type="text" class="form-control" placeholder="Stream name">
+                    </div>
+                  </div>
+                  <div class="col-md-3 col-sm-12">
+                    <div class="form-group md-form" [ngClass]="{ 'has-danger': submitted && f.subject.errors }">
+                      <ngx-select-dropdown (change)="getAllTopics()" formControlName="subject" [multiple]="false" [options]="subjectsList" [config]="subjectConfig" class="select-picker"></ngx-select-dropdown>
+                      <label *ngIf="submitted && f.subject.errors" class="error">
+                        <span *ngIf="f.subject.errors.required">Select a subject</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 col-sm-12">
+                    <div class="form-group md-form" [ngClass]="{ 'has-danger': submitted && f.topic.errors }">
+                      <ngx-select-dropdown formControlName="topic" [multiple]="false" [options]="topicsList" [config]="topicConfig" class="select-picker"></ngx-select-dropdown>
+                      <label *ngIf="submitted && f.topic.errors" class="error">
+                        <span *ngIf="f.topic.errors.required">Select a topic</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 col-sm-12">
+                    <div class="form-group md-form btn-sec">
+                      <button type="submit" class="btn btn-fill btn-rose" [disabled]="disableSubmit">Proceed</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </figure>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" [hidden]="!showQuestionDetails">
+      <div class="col-md-8 col-sm-12">
+        <div class="card">
+          <div class="card-header card-header-info card-header-text">
+            <div class="row">
+              <div class="card-text col-40" style="height: 60px;">
+                <h4 class="card-title" style="text-align: right;">Question No. {{activeQuestionIndex+1}}</h4>
+              </div>
+              <div class="col-60">
+                <div class="row">
+                  <div class="col-sm-12 right-col">
+                    <button class="btn btn-info filter-btn" (click)="isCollapsed = !isCollapsed"[attr.aria-expanded]="!isCollapsed" aria-controls="collapseEvent">
+                      Filter
+                      <span class="btn-label btn-label-right">
+                        <i class="material-icons" *ngIf="isCollapsed">arrow_downward</i>
+                        <i class="material-icons" *ngIf="!isCollapsed">arrow_upward</i>
+                      </span>
+                    <div class="ripple-container"></div>
+                  </button>
+                  </div>
+                  <div class="col-sm-12" id="collapseEvent" [isAnimated]="true" [collapse]="isCollapsed">
+                    <div class="row">
+                      <div class="col-50">
+                        <div class="form-group md-form question-action-pad">
+                          <ngx-select-dropdown #dropdownEle [(ngModel)]="selectedTopic" (click)="checkDropdownPosition($event)" (change)="getAllSections($event)" [multiple]="false" [options]="topicsList" [config]="topicConfig" class="select-picker"></ngx-select-dropdown>
+                        </div>
+                      </div>
+                      <div class="col-50">
+                        <div class="form-group md-form question-action-pad">
+                          <ngx-select-dropdown #dropdownEle [(ngModel)]="sectionValue" (click)="checkDropdownPosition($event)" (change)="getAllQuestions()" [multiple]="false" [options]="sectionsList" [config]="sectionConfig" class="select-picker"></ngx-select-dropdown>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body question-details-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="question-image">
+                  <img [hidden]="questionImageSrc === ''" [src]="questionImageSrc">
+                </div>
+              </div>
+              <div class="col-sm-12 card-header-info bottom-actions">
+                <div class="row">
+                  <div class="col-sm-12 right-aligned">
+                    <button class="btn" [ngClass]="{'btn-warning': prevBtnActive}" (click)="goToQuestion(activeQuestionIndex-1)">
+                      <span class="btn-label">
+                        <i class="material-icons">keyboard_backspace</i>
+                      </span>
+                      Prev
+                    <div class="ripple-container"></div>
+                  </button>
+                  <button class="btn" [ngClass]="{'btn-warning': nextBtnActive}" (click)="goToQuestion(activeQuestionIndex+1)">
+                    Next
+                    <span class="btn-label btn-label-right">
+                      <i class="material-icons">arrow_right_alt</i>
+                    </span>
+                  <div class="ripple-container"></div>
+                </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-12 section-height">
+        <div class="card">
+          <div class="card-body child-section-height">
+            <div class="row">
+              <ng-container *ngFor="let question of questionsList; let i = index">
+                <div class="question-number" [ngClass]="{'active': i === activeQuestionIndex}" (click)="goToQuestion(i)">{{i+1}}</div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body child-section-height">
+            <iframe [hidden]="questionVideoSrc === ''" width="100%" height="100px" [src]="questionVideoSrc" frameborder="0"
+            allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

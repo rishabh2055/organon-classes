@@ -2,3 +2,6 @@
 [31merror[39m: [31mError on GET .../all failed: SequelizeDatabaseError: Unknown column 'fkClassId' in 'field list'[39m {"timestamp":"2021-01-19 20:44:30"}
 [31merror[39m: [31mError on GET .../all failed: SequelizeDatabaseError: Unknown column 'fkClassId' in 'field list'[39m {"timestamp":"2021-01-19 20:46:16"}
 [31merror[39m: [31mError on GET .../all failed: SequelizeDatabaseError: Unknown column 'fkClassId' in 'field list'[39m {"timestamp":"2021-01-19 20:48:23"}
+[31merror[39m: [31mError on GET .../all failed: SequelizeDatabaseError: Unknown column 'Question.name' in 'order clause'[39m {"timestamp":"2021-01-22 10:01:05"}
+[31merror[39m: [31mError on GET .../all failed: SequelizeDatabaseError: Unknown column 'Question.name' in 'order clause'[39m {"timestamp":"2021-01-22 10:01:43"}
+[31merror[39m: [31mError on GET .../all failed: SequelizeAccessDeniedError: Access denied for user 'root'@'localhost' (using password: YES)[39m {"timestamp":"2021-01-26 21:01:50"}

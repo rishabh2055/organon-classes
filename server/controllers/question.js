@@ -99,18 +99,33 @@ export default class Question{
         include: [
           {
             model: models.Class,
+            where: {
+              isActive: 'True'
+            },
             as: 'class'
           },{
             model: models.Stream,
+            where: {
+              isActive: 'True'
+            },
             as: 'stream'
           },{
             model: models.Subject,
+            where: {
+              isActive: 'True'
+            },
             as: 'subject'
           },{
             model: models.Topic,
+            where: {
+              isActive: 'True'
+            },
             as: 'topic'
           },{
             model: models.Section,
+            where: {
+              isActive: 'True'
+            },
             as: 'section'
           }
         ]
@@ -126,14 +141,14 @@ export default class Question{
     }
   }
 
-  static async getAllSectionList(req, res) {
+  static async getAllQuestionList(req, res) {
     try {
       const questionsList = await models.Question.findAll({
         where: {
           isActive: 'True',
-          fkTopicId: req.params.id
+          fkSectionId: req.params.id
         },
-        order: [['name', 'ASC']]
+        order: [['updatedOn', 'DESC']]
       });
       if (questionsList) {
         return res.status(200).json(questionsList);
@@ -142,6 +157,27 @@ export default class Question{
       error(`Error on GET .../all failed: ${err}`);
       return res.status(503).json({
         message: 'Failed to get all questions list'
+      });
+    }
+  }
+
+  static async getAllQuestionListByClassAndStream(req, res) {
+    try {
+      const topicsList = await models.Question.findAll({
+        where: {
+          isActive: 'True',
+          fkClassId: req.body.class.id,
+          fkStreamId: req.body.stream.id,
+        },
+        order: [['updatedOn', 'ASC']]
+      });
+      if (topicsList) {
+        return res.status(200).json(topicsList);
+      }
+    } catch (err) {
+      error(`Error on GET .../all failed: ${err}`);
+      return res.status(503).json({
+        message: 'Failed to get all topics list'
       });
     }
   }
@@ -156,18 +192,33 @@ export default class Question{
         include: [
           {
             model: models.Class,
+            where: {
+              isActive: 'True'
+            },
             as: 'class'
           },{
             model: models.Stream,
+            where: {
+              isActive: 'True'
+            },
             as: 'stream'
           },{
             model: models.Subject,
+            where: {
+              isActive: 'True'
+            },
             as: 'subject'
           },{
             model: models.Topic,
+            where: {
+              isActive: 'True'
+            },
             as: 'topic'
           },{
             model: models.Section,
+            where: {
+              isActive: 'True'
+            },
             as: 'section'
           }
         ]

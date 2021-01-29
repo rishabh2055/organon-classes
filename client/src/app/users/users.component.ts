@@ -230,6 +230,9 @@ export class UsersComponent implements OnInit {
           role: (response.role === 'Admin') ? this.rolesList[0]: this.rolesList[1],
           mobileNo: response.mobileNo
         });
+        this.getAllClasses();
+        this.getAllStreams();
+
       },
       (error) => {
         Swal.fire('Oops...', error.error.message, 'error');

@@ -19,6 +19,9 @@ export class TopicService {
   getAllTopicList(subject): Observable<any>{
     return this.http.get<Observable<any>>(`/api/topic/list/${subject.id}`);
   }
+  getAllTopicListByClassAndStream(student): Observable<any>{
+    return this.http.post<Observable<any>>(`/api/topic/byClassAndStream`, student);
+  }
   getTopic(id): Observable<any> {
     return this.http.get<Observable<any>>(`/api/topic/${id}`);
   }

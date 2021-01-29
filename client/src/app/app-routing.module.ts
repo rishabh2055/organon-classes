@@ -9,6 +9,7 @@ import { StreamComponent } from './stream/stream.component';
 import { SubjectComponent } from './subject/subject.component';
 import { SectionComponent } from './section/section.component';
 import { LoginComponent } from './login/login.component';
+import { StudentComponent } from './student/student.component';
 
 import { AuthGuardService } from './_helpers/auth-guard.service';
 import { LoggedOutGuardSevice } from './_helpers/logged-out.guard.service';
@@ -17,6 +18,7 @@ import { LoggedOutGuardSevice } from './_helpers/logged-out.guard.service';
 const routes: Routes = [
   {path: '' , pathMatch: 'full' , component: DashboardComponent, canActivate: [AuthGuardService]},
   {path: 'login', component: LoginComponent, canActivate: [LoggedOutGuardSevice]},
+  {path: 'student', component: StudentComponent, canActivate: [AuthGuardService]},
   {path: 'streams' , component: StreamComponent, canActivate: [AuthGuardService]},
   {path: 'streams/:id' , component: StreamComponent, canActivate: [AuthGuardService]},
   {path: 'subjects' , component: SubjectComponent, canActivate: [AuthGuardService]},

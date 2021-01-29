@@ -83,9 +83,15 @@ export default class Subject{
         include: [
           {
             model: models.Class,
+            where: {
+              isActive: 'True'
+            },
             as: 'class'
           },{
             model: models.Stream,
+            where: {
+              isActive: 'True'
+            },
             as: 'stream'
           }
         ]
@@ -131,9 +137,15 @@ export default class Subject{
         include: [
           {
             model: models.Class,
+            where: {
+              isActive: 'True'
+            },
             as: 'class'
           },{
             model: models.Stream,
+            where: {
+              isActive: 'True'
+            },
             as: 'stream'
           }
         ]

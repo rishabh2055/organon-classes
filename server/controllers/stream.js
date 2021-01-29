@@ -81,6 +81,9 @@ export default class Stream{
         include: [
           {
             model: models.Class,
+            where: {
+              isActive: 'True'
+            },
             as: 'class'
           }
         ]
@@ -126,6 +129,9 @@ export default class Stream{
         include: [
           {
             model: models.Class,
+            where: {
+              isActive: 'True'
+            },
             as: 'class'
           }
         ]

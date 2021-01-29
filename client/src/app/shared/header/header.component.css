@@ -1,0 +1,9 @@
+.navbar .navbar-nav .nav-item .nav-link{
+  border-radius:  50% !important;
+  background-color: #1e19b0;
+  line-height: 16px !important;
+  font-size: 16px !important;
+  -webkit-box-shadow: -1px 1px 5px 0px rgba(30,25,176,1);
+  -moz-box-shadow: -1px 1px 5px 0px rgba(30,25,176,1);
+  box-shadow: -1px 1px 5px 0px rgba(30,25,176,1);
+}

@@ -85,12 +85,21 @@ export default class Topic{
         include: [
           {
             model: models.Class,
+            where: {
+              isActive: 'True'
+            },
             as: 'class'
           },{
             model: models.Stream,
+            where: {
+              isActive: 'True'
+            },
             as: 'stream'
           },{
             model: models.Subject,
+            where: {
+              isActive: 'True'
+            },
             as: 'subject'
           }
         ]
@@ -116,12 +125,21 @@ export default class Topic{
         include: [
           {
             model: models.Class,
+            where: {
+              isActive: 'True'
+            },
             as: 'class'
           },{
             model: models.Stream,
+            where: {
+              isActive: 'True'
+            },
             as: 'stream'
           },{
             model: models.Subject,
+            where: {
+              isActive: 'True'
+            },
             as: 'subject'
           }
         ]
@@ -144,7 +162,28 @@ export default class Topic{
           isActive: 'True',
           fkSubjectId: req.params.id
         },
-        order: [['name', 'ASC']]
+        order: [['updatedOn', 'ASC']]
+      });
+      if (topicsList) {
+        return res.status(200).json(topicsList);
+      }
+    } catch (err) {
+      error(`Error on GET .../all failed: ${err}`);
+      return res.status(503).json({
+        message: 'Failed to get all topics list'
+      });
+    }
+  }
+
+  static async getAllTopicListByClassAndStream(req, res) {
+    try {
+      const topicsList = await models.Topic.findAll({
+        where: {
+          isActive: 'True',
+          fkClassId: req.body.class.id,
+          fkStreamId: req.body.stream.id,
+        },
+        order: [['updatedOn', 'ASC']]
       });
       if (topicsList) {
         return res.status(200).json(topicsList);
