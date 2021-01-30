@@ -26,6 +26,7 @@ import { SectionComponent } from './section/section.component';
 import { SubjectComponent } from './subject/subject.component';
 import { StudentComponent } from './student/student.component';
 import { StudentProfileComponent } from './student-profile/student-profile.component';
+import { CommonDirectiveDirective } from './_helpers/common-directive.directive';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { StudentProfileComponent } from './student-profile/student-profile.compo
     SectionComponent,
     SubjectComponent,
     StudentComponent,
-    StudentProfileComponent
+    StudentProfileComponent,
+    CommonDirectiveDirective
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
