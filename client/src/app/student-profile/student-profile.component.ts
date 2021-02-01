@@ -80,7 +80,7 @@ export class StudentProfileComponent implements OnInit {
         this.classesList = response.classes;
       },
       (error) => {
-        Swal.fire('Oops...', error.error.message, 'error');
+        Swal.fire('Oops...', "Something went wrong !! Please contact with support.", 'error');
       }
     );
   }
@@ -107,7 +107,7 @@ export class StudentProfileComponent implements OnInit {
         }
       },
       (error) => {
-        Swal.fire('Oops...', error.error.message, 'error');
+        Swal.fire('Oops...', "Something went wrong !! Please contact with support.", 'error');
         this.streamsList = [];
         this.userForm.patchValue({
           stream: ''
@@ -149,7 +149,7 @@ export class StudentProfileComponent implements OnInit {
         this.disableSubmit = false;
       }, (error) => {
         this.disableSubmit = false;
-        Swal.fire('Oops...', error.error.message, 'error');
+        Swal.fire('Oops...', "Something went wrong !! Please contact with support.", 'error');
       }
     );
   }
@@ -173,7 +173,7 @@ export class StudentProfileComponent implements OnInit {
 
       },
       (error) => {
-        Swal.fire('Oops...', error.error.message, 'error');
+        Swal.fire('Oops...', "Something went wrong !! Please contact with support.", 'error');
       }
     );
   }

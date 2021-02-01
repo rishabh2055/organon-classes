@@ -159,7 +159,6 @@ export default class User{
           name: req.body.name,
           fName: req.body.fName,
           city: req.body.city,
-          role: req.body.role.name,
           dob: req.body.dob,
           address: req.body.address,
           updatedOn: now
