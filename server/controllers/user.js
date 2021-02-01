@@ -184,7 +184,7 @@ export default class User{
             }
           );
 
-          if(req.body.role.name === 'Student'){
+          if(req.body.role && req.body.role.name === 'Student'){
             //Save student details on table
             let createStudentDocument = {
               fkClassId: req.body.class.id,
