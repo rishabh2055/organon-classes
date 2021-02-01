@@ -164,6 +164,9 @@ export default class User{
           address: req.body.address,
           updatedOn: now
         }
+        if(req.body.role){
+          creationDocument.role = req.body.role.name;
+        }
         if(req.body.password && req.body.password !== null){
           creationDocument.hash = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10), null);
           creationDocument.passwdLastChanged = now;

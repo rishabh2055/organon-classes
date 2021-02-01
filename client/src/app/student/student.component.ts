@@ -193,7 +193,7 @@ export class StudentComponent implements OnInit {
           this.questionsList = response;
           this.questionImageSrc = `assets/uploads/${this.questionsList[0].image}`;
           const tempStr = this.questionsList[0].video.split('/');
-          this.questionVideoSrc = this.sanitizer.bypassSecurityTrustResourceUrl(`https://youtube.com/embed/${tempStr[tempStr.length-1]}`);
+          this.questionVideoSrc = this.sanitizer.bypassSecurityTrustResourceUrl(this.questionsList[0].video);
           this.showQuestionDetails = true;
           this.showBackBtn = true;
         }
@@ -214,7 +214,7 @@ export class StudentComponent implements OnInit {
       this.activeQuestionIndex = index;
       this.questionImageSrc = `assets/uploads/${this.questionsList[index].image}`;
       const tempStr = this.questionsList[index].video.split('/');
-      this.questionVideoSrc = this.sanitizer.bypassSecurityTrustResourceUrl(`https://youtube.com/embed/${tempStr[tempStr.length-1]}`);
+      this.questionVideoSrc = this.sanitizer.bypassSecurityTrustResourceUrl(this.questionsList[index].video);
       this.showQuestionDetails = true;
       if(this.questionsList[index+1]){
         this.nextBtnActive = true;
