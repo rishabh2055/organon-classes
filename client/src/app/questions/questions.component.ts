@@ -112,7 +112,7 @@ export class QuestionsComponent implements OnInit {
     });
 
     this.questionForm = this.fb.group({
-      question: ['', Validators.required],
+      question: [''],
       class: ['', Validators.required],
       stream: ['', Validators.required],
       subject: ['', Validators.required],
@@ -127,7 +127,7 @@ export class QuestionsComponent implements OnInit {
 
   setOptionalFieldValidators(){
     if(!this.questionId){
-      this.questionForm.get('fileSource').setValidators([Validators.required]);
+      this.questionForm.get('question').setValidators([Validators.required]);
     }
   }
 

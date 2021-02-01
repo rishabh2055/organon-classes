@@ -19,12 +19,6 @@ export default class Question{
           message: 'Add/Edit Question failed. no body provided'
         });
       }
-      if(!req.file){
-        error('POST .../add failed: no file provided');
-        return res.status(400).send({
-          message: 'Add/Edit Question failed. question image provided'
-        });
-      }
       let creationDocument;
       if(req.body.questionId && req.body.questionId !== 'undefined'){
         creationDocument = {
@@ -61,6 +55,12 @@ export default class Question{
           return res.status(200).json(returnSavedResponse);
         });
       }else{
+        if(!req.file){
+          error('POST .../add failed: no file provided');
+          return res.status(400).send({
+            message: 'Add/Edit Question failed. question image not provided'
+          });
+        }
         creationDocument = {
           fkClassId: +req.body.class,
           fkStreamId: +req.body.stream,
