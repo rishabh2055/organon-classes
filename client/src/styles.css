@@ -141,3 +141,7 @@ div.error {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+.navbar.bg-organon {
+  color: #ffffff;
+  background: linear-gradient(60deg, #794BDD, #6C22E2) !important;
+}

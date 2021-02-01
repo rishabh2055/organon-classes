@@ -21,3 +21,15 @@
 .collapse ul li a:hover{
   background-color: lightblue;
 }
+.navbar-wrapper img{
+  width: 150px;
+}
+.navbar-wrapper{
+  width: 80%;
+}
+
+@media only screen and (min-width: 110px) {
+  .navbar-wrapper img{
+    width: 200px;
+  }
+}

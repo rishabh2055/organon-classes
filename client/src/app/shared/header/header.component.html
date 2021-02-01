@@ -1,10 +1,10 @@
 
 <!-- Navbar -->
-<nav [hidden]="!isLoggedIn" class="navbar navbar-expand-lg navbar-absolute fixed-top" [ngClass]="{'bg-primary': userDetails?.role === 'Student'}">
+<nav [hidden]="!isLoggedIn" class="navbar navbar-expand-lg navbar-absolute fixed-top" [ngClass]="{'bg-organon': userDetails?.role === 'Student'}">
   <div class="container-fluid">
     <div class="navbar-wrapper">
       <a *ngIf="userDetails?.role === 'Student'" class="navbar-brand" [routerLink] = "'/'">
-        <img src="assets/images/organon-class-text.jpg">
+        <img src="assets/images/organon-class-text.png">
       </a>
     </div>
     <button *ngIf="userDetails?.role === 'Admin'" (click)="toggleNavbar()" class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
