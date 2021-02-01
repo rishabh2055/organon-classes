@@ -147,6 +147,7 @@ export class StudentProfileComponent implements OnInit {
         this.userForm.markAsPristine();
         this.userForm.markAsUntouched();
         this.disableSubmit = false;
+        this.getUserDetails();
       }, (error) => {
         this.disableSubmit = false;
         Swal.fire('Oops...', "Something went wrong !! Please contact with support.", 'error');
