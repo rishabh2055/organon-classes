@@ -27,9 +27,11 @@ export default class Question{
           fkSubjectId: +req.body.subject,
           fkTopicId: +req.body.topic,
           fkSectionId: +req.body.section,
-          image: req.file.filename,
           video: req.body.video,
           updatedOn: now
+        }
+        if(req.file){
+          creationDocument.image = req.file.filename;
         }
         // Save new user records in one transaction
         await models.sequelize.transaction(async t => {
