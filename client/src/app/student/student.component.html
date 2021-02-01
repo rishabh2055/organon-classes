@@ -80,13 +80,13 @@
                   </div>
                   <div class="col-sm-12" id="collapseEvent" [isAnimated]="true" [collapse]="isCollapsed">
                     <div class="row">
-                      <div class="col-50">
-                        <div class="form-group md-form question-action-pad">
+                      <div class="col-sm-12">
+                        <div class="form-group md-form">
                           <ngx-select-dropdown #dropdownEle [(ngModel)]="selectedTopic" (click)="checkDropdownPosition($event)" (change)="getAllSections($event)" [multiple]="false" [options]="topicsList" [config]="topicConfig" class="select-picker"></ngx-select-dropdown>
                         </div>
                       </div>
-                      <div class="col-50">
-                        <div class="form-group md-form question-action-pad">
+                      <div class="col-sm-12">
+                        <div class="form-group md-form">
                           <ngx-select-dropdown #dropdownEle [(ngModel)]="sectionValue" (click)="checkDropdownPosition($event)" (change)="getAllQuestions()" [multiple]="false" [options]="sectionsList" [config]="sectionConfig" class="select-picker"></ngx-select-dropdown>
                         </div>
                       </div>

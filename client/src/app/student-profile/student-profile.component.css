@@ -1,20 +1,30 @@
-.student-section{
+.student-profile-section{
     height: 100vh;
     overflow: auto;
     max-height: 100vh;
   }
-  .student-section .row{
+  .student-profile-section .row{
     margin: 0 !important;
   }
-  .student-section h3, .student-section .card-title{
+  .student-profile-section h3, .student-profile-section .card-title{
     margin: 4px 0;
   }
-  .student-section .card{
+  .student-profile-section .card{
     margin-bottom: 0 !important;
   }
 
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 500px) and (min-width: 300px) {
+  .student-profile-section{
+    padding-top:15.3%;
+  }
+  .card [class*="card-header-"] .card-icon, .card [class*="card-header-"] .card-text{
+    height: 40px;
+    padding: 8px 15px !important;
+  }
+}
   @media only screen and (max-width: 600px) and (min-width: 500px) {
-    .student-section{
+    .student-profile-section{
       padding-top:13.3%;
     }
     .card [class*="card-header-"] .card-icon, .card [class*="card-header-"] .card-text{
@@ -22,10 +32,10 @@
       padding: 10px 15px !important;
     }
   }
-  
+
   /* Medium devices (landscape tablets, 768px and up) */
   @media only screen and (max-width: 768px) and (min-width: 600px) {
-    .student-section{
+    .student-profile-section{
       padding-top:11.3%;
     }
     .card [class*="card-header-"] .card-icon, .card [class*="card-header-"] .card-text{
@@ -33,10 +43,10 @@
       padding: 10px 15px !important;
     }
   }
-  
+
   /* Large devices (laptops/desktops, 992px and up) */
   @media only screen and (max-width: 992px) and (min-width: 768px)  {
-    .student-section{
+    .student-profile-section{
       padding-top:9.3%;
     }
     .card [class*="card-header-"] .card-icon, .card [class*="card-header-"] .card-text{
@@ -44,16 +54,16 @@
       padding: 12px 15px !important;
     }
   }
-  
+
   /* Extra large devices (large laptops and desktops, 1200px and up) */
   @media only screen and (max-width: 1200px) and (min-width: 992px)  {
-    .student-section{
+    .student-profile-section{
       padding-top:7.3%;
     }
   }
-  
+
   @media only screen and (min-width: 1200px){
-    .student-section{
+    .student-profile-section{
       padding-top:5.3%;
     }
   }
