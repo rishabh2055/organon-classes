@@ -1,7 +1,8 @@
 <div appCommonDirective class="wrapper">
   <app-sidebar></app-sidebar>
-  <div [ngClass]="{'main-panel': userDetails?.role === 'Admin'}">
+  <div>
     <app-header></app-header>
     <router-outlet></router-outlet>
   </div>
 </div>
+

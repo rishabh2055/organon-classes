@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Location } from "@angular/common";
 import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from './_utils/auth.service';
@@ -8,6 +8,7 @@ import { AuthService } from './_utils/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  @ViewChild('topPanel') topPanel;
   title = 'Organon Classes';
   currentRoute: string;
   userDetails: any;

@@ -33,11 +33,6 @@ export class CommonDirectiveDirective {
       alert('CTRL + C');
       return false;
     }
-        
-    if((e.ctrlKey || e.metaKey) && e.keyCode == 86){
-      alert('CTRL +  V');
-      return false;
-    }
-        
+
   }
 }

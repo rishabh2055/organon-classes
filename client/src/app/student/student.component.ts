@@ -136,7 +136,7 @@ export class StudentComponent implements OnInit {
         this.subjectsList = response;
       },
       (error) => {
-        Swal.fire('Oops...', "Something went wrong !! Please contact with support.", 'error');
+        Swal.fire('Oops...', "Session is expired !! Please login again.", 'error');
       }
     );
   }

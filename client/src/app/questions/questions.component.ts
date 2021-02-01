@@ -118,10 +118,17 @@ export class QuestionsComponent implements OnInit {
       subject: ['', Validators.required],
       topic: ['', Validators.required],
       section: ['', Validators.required],
-      fileSource: ['', Validators.required],
+      fileSource: [''],
       video: ['', Validators.required]
     });
+    this.setOptionalFieldValidators();
     this.getAllClasses();
+  }
+
+  setOptionalFieldValidators(){
+    if(!this.questionId){
+      this.questionForm.get('fileSource').setValidators([Validators.required]);
+    }
   }
 
   getAllClasses() {

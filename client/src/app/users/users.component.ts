@@ -83,7 +83,7 @@ export class UsersComponent implements OnInit {
       address: [null, [Validators.maxLength(500), Validators.minLength(2)]],
       email: [{value: null, disabled: this.disabledField}, [Validators.required, Validators.email]],
       mobileNo: [{value: null, disabled: this.disabledField}, [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
-      password: [null, Validators.minLength(6)],
+      password: [null],
       cPassword: [null],
       dob: [null, Validators.required],
       role: [null, Validators.required],
@@ -117,7 +117,7 @@ export class UsersComponent implements OnInit {
       }
     );
     if(this.userId === undefined){
-      this.userForm.get('password').setValidators([Validators.required]);
+      this.userForm.get('password').setValidators([Validators.required, Validators.minLength(6)]);
       this.userForm.get('cPassword').setValidators([Validators.required]);
     }
   }

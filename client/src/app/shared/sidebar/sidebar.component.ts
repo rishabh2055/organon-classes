@@ -33,6 +33,7 @@ export class SidebarComponent implements OnInit {
   }
 
   logout(){
+    this.isCollapsed = !this.isCollapsed;
     this.authService.signout();
     this.router.navigate(['/login']);
   }
