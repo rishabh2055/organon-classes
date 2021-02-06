@@ -1,7 +1,7 @@
 export const DB = {
-  HOST: 'localhost',
-  USER: 'root',
-  PASSWORD: 'R!$h@bh@2021',
+  HOST: 'organon-classes.c0z4fivxgeqf.ap-south-1.rds.amazonaws.com',
+  USER: 'admin',
+  PASSWORD: 'GY!#Fgh367&#$--+123',
   DB: 'organon-classes',
   dialect: 'mysql',
   pool: { // pool is optional, it will be used for Sequelize connection pool configuration
