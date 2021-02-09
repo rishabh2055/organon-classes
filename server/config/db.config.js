@@ -1,6 +1,6 @@
 export const DB = {
   HOST: '85.187.128.41',
-  USER: 'organonc',
+  USER: 'organonc_USER',
   PASSWORD: 'ORg^#$gjhhj3453',
   DB: 'organonc_DB',
   dialect: 'mysql',
