@@ -1,5 +1,5 @@
 export const DB = {
-  HOST: 'http://sg1-ss18.a2hosting.com/',
+  HOST: '85.187.128.41',
   USER: 'organonc_USER',
   PASSWORD: 'ORg^#$gjhhj3453',
   DB: 'organonc_DB',
