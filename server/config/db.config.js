@@ -1,7 +1,7 @@
 export const DB = {
   HOST: '85.187.128.41',
   USER: 'organonc',
-  PASSWORD: 'k!mk)IlEI976I6',
+  PASSWORD: 'ORg^#$gjhhj3453',
   DB: 'organonc_DB',
   dialect: 'mysql',
   pool: { // pool is optional, it will be used for Sequelize connection pool configuration
