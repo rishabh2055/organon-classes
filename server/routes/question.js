@@ -5,7 +5,7 @@ const multer = require('multer');
 
 import * as authReq from '../middlewares/authJWT';
 import Question from '../controllers/question';
-const UPLOAD_DIR = path.join(process.cwd(), 'client', 'src', 'assets', 'uploads');
+const UPLOAD_DIR = path.join(process.cwd(), 'public', 'uploads');
 
 let storage = multer.diskStorage({
   destination: (req, file, cb) => {

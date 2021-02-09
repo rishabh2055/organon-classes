@@ -1,24 +1,18 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-import compression from "compression";
 import http from 'http';
-// Express is for building the Rest apis
-import flash from "express-flash";
 import express from 'express';
 // body-parser helps to parse the request and create the req.body object
 import bodyParser from 'body-parser';
 // HTTP request logger middleware for node.js
 import morgan from 'morgan';
-// Helmet helps us to secure our Express apps by setting various HTTP headers.
-import csp from 'helmet-csp';
 import cookieParser from 'cookie-parser';
 import path from 'path';
 import cors from 'cors';
-import session from 'express-session';
 import models from './models';
 import routes from './routes';
-import helmet from "helmet";
-import config from './config/auth.config';
+
+const serveIndex = require('serve-index');
 
 
 const app = express();
@@ -57,6 +51,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 // app.disable("x-powered-by");
 
 app.use('/api', routes);
+
+app.use('/ftp', express.static('public'), serveIndex('public', {'icons': true}));
 
 app.get('*.*', express.static(path.join(process.cwd(), 'client', 'dist', 'organon-classes')));
 

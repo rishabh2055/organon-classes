@@ -38,6 +38,7 @@
     "request": "^2.88.2",
     "rimraf": "^3.0.2",
     "sequelize": "^4.44.3",
+    "serve-index": "^1.9.1",
     "ts-loader": "^7.0.5",
     "tslib": "^1.10.0",
     "uuid": "^7.0.3",

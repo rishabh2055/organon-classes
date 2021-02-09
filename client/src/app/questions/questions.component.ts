@@ -368,7 +368,7 @@ export class QuestionsComponent implements OnInit {
           section: response.section,
           video: response.video
         });
-        this.imageSrc = `assets/uploads/${response.image}`;
+        this.imageSrc = `ftp/uploads/${response.image}`;
         this.getAllStreams();
         this.getAllSubjects();
         this.getAllTopics();
