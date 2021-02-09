@@ -24,7 +24,7 @@ app.use(morgan('combined'));
 app.use(cookieParser());
 
 //set port, listen  for requests
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 80;
 
 //parse requests of content-type - application/json
 app.use(express.json());
