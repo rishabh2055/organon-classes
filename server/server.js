@@ -60,6 +60,8 @@ app.get('*.*', express.static(path.join(process.cwd(), 'client', 'dist', 'organo
 app.get('*', function (req, res) {
   res.sendFile(path.join(process.cwd(), 'client', 'dist', 'organon-classes', 'index.html'));
 });
-http.createServer(app).listen(PORT, '216.137.177.55');
+http.createServer(app).listen(PORT, function () {
+  console.log(`Server is running on port:: ${PORT}`);
+});
 
 export default app;
