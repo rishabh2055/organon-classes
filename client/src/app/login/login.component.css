@@ -6,6 +6,7 @@
 }
 .logo img{
   width: 25%;
+  height: 50px;
 }
 .logo{
   display: flex;
@@ -19,6 +20,7 @@
   }
   .logo img{
     width: 20%;
+    height: 45px;
   }
   .logo{
     padding: 7% 0;
