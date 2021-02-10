@@ -191,7 +191,7 @@ export class StudentComponent implements OnInit {
           Swal.fire('Oops...', "No questions found ! Please change your filter.", 'error');
         }else{
           this.questionsList = response;
-          this.questionImageSrc = `assets/uploads/${this.questionsList[0].image}`;
+          this.questionImageSrc = `ftp/uploads/${this.questionsList[0].image}`;
           const tempStr = this.questionsList[0].video.split('/');
           this.questionVideoSrc = this.sanitizer.bypassSecurityTrustResourceUrl(this.questionsList[0].video);
           this.showQuestionDetails = true;
