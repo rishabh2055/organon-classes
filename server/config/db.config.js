@@ -1,5 +1,5 @@
 export const DB = {
-  HOST: 'localhost',
+  HOST: '216.137.177.55',
   USER: 'root',
   PASSWORD: 'k!mk)IlEI976I6',
   DB: 'organon_classes',
