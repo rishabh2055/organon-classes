@@ -25,7 +25,7 @@ const routes: Routes = [
   {path: 'streams/:id' , component: StreamComponent, canActivate: [AuthGuardService]},
   {path: 'subjects' , component: SubjectComponent, canActivate: [AuthGuardService]},
   {path: 'subjects/:id' , component: SubjectComponent, canActivate: [AuthGuardService]},
-  {path: 'users' , component: UsersComponent, canActivate: [AuthGuardService]},
+  {path: 'users' , component: UsersComponent},
   {path: 'users/:id' , component: UsersComponent, canActivate: [AuthGuardService]},
   {path: 'classes' , component: ClassesComponent, canActivate: [AuthGuardService]},
   {path: 'classes/:id' , component: ClassesComponent, canActivate: [AuthGuardService]},
