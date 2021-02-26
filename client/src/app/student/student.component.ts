@@ -162,7 +162,7 @@ export class StudentComponent implements OnInit {
       (response) => {
         response.map(res => res.checked = false);
         this.questionsList = response;
-        this.questionImageSrc = `assets/uploads/${this.questionsList[0].image}`;
+        this.questionImageSrc = `ftp/uploads/${this.questionsList[0].image}`;
       },
       (error) => {
         Swal.fire('Oops...', "Something went wrong !! Please contact with support.", 'error');
@@ -212,7 +212,7 @@ export class StudentComponent implements OnInit {
   goToQuestion(index){
     if(this.questionsList[index]){
       this.activeQuestionIndex = index;
-      this.questionImageSrc = `assets/uploads/${this.questionsList[index].image}`;
+      this.questionImageSrc = `ftp/uploads/${this.questionsList[index].image}`;
       const tempStr = this.questionsList[index].video.split('/');
       this.questionVideoSrc = this.sanitizer.bypassSecurityTrustResourceUrl(this.questionsList[index].video);
       this.showQuestionDetails = true;
