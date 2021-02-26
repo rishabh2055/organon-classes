@@ -1,6 +1,6 @@
 export const DB = {
   HOST: '216.137.177.55',
-  USER: 'root',
+  USER: 'organon',
   PASSWORD: 'k!mk)IlEI976I6',
   DB: 'organon_classes',
   dialect: 'mysql',
