@@ -1,1 +1,2 @@
 
+[31merror[39m: [31mError on GET .../all failed: SequelizeDatabaseError: Unknown column 'Question.stream' in 'where clause'[39m {"timestamp":"2021-06-04 23:45:29"}

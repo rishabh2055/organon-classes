@@ -148,11 +148,11 @@ export default class Question{
       const questionsList = await models.Question.findAll({
         where: {
           isActive: 'True',
-          fkClassId: req.body.class,
-          stream: req.body.stream,
-          subject: req.body.subject,
-          fkTopicId: req.body.topic,
-          fkSectionId: req.body.section
+          fkClassId: req.body.fkClassId,
+          fkStreamId: req.body.fkStreamId,
+          fkSubjectId: req.body.fkSubjectId,
+          fkTopicId: req.body.fkTopicId,
+          fkSectionId: req.body.id
         },
         order: [['updatedOn', 'DESC']]
       });
