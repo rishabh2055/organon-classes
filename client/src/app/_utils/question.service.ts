@@ -21,8 +21,8 @@ export class QuestionService {
   getAllQuestions(): Observable<any>{
     return this.http.get<Observable<any>>(`/api/question/all`);
   }
-  getAllQuestionList(topic): Observable<any>{
-    return this.http.get<Observable<any>>(`/api/question/list/${topic.id}`);
+  getAllQuestionList(topic, section): Observable<any>{
+    return this.http.get<Observable<any>>(`/api/question/list/${topic.id}/${section.id}`);
   }
   getAllQuestionListByClassAndStream(student): Observable<any>{
     return this.http.post<Observable<any>>(`/api/question/byClassAndStream`, student);

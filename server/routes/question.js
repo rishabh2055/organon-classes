@@ -22,7 +22,7 @@ router.post('/add', [authReq.verifyToken, upload.single('upload')], Question.add
 router.get('/all', [authReq.verifyToken], Question.getAllQuestions);
 router.get('/:id', [authReq.verifyToken], Question.getQuestion);
 router.get('/delete/:id', [authReq.verifyToken], Question.deleteQuestion);
-router.get('/list/:id', Question.getAllQuestionList);
+router.get('/list/:id/:sectionId', Question.getAllQuestionList);
 router.post('/byClassAndStream', [authReq.verifyToken], Question.getAllQuestionListByClassAndStream);
 
 export default router;
