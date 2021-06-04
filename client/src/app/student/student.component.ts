@@ -182,7 +182,7 @@ export class StudentComponent implements OnInit {
     this.getAllSections(this.f.topic);
   }
   getAllQuestions() {
-    this.questionService.getAllQuestionList(this.sectionValue).subscribe(
+    this.questionService.getAllQuestionList(this.selectedTopic, this.sectionValue).subscribe(
       (response) => {
         this.questionsList = [];
         this.questionImageSrc = '';
