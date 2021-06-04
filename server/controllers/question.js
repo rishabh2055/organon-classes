@@ -149,7 +149,7 @@ export default class Question{
         where: {
           isActive: 'True',
           fkTopicId: req.params.id,
-          fkSectionId: req.body.sectionId
+          fkSectionId: req.params.sectionId
         },
         order: [['updatedOn', 'DESC']]
       });
