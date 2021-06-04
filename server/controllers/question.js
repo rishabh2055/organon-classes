@@ -154,7 +154,7 @@ export default class Question{
           fkTopicId: req.body.fkTopicId,
           fkSectionId: req.body.id
         },
-        order: [['updatedOn', 'DESC']]
+        order: [['id', 'ASC']]
       });
       if (questionsList) {
         return res.status(200).json(questionsList);
