@@ -182,7 +182,14 @@ export class StudentComponent implements OnInit {
     this.getAllSections(this.f.topic);
   }
   getAllQuestions() {
-    this.questionService.getAllQuestionList(this.selectedTopic, this.sectionValue).subscribe(
+    const postData = {
+      class: this.f.class.value.id,
+      stream: this.f.stream.value.id,
+      subject: this.f.subject.value.id,
+      topic: this.selectedTopic,
+      section: this.sectionValue
+    }
+    this.questionService.getAllQuestionList(postData).subscribe(
       (response) => {
         this.questionsList = [];
         this.questionImageSrc = '';
