@@ -139,8 +139,11 @@
         </div>
         <div class="card">
           <div class="card-body child-section-height">
-            <iframe [hidden]="questionVideoSrc === ''" width="100%" height="100px" [src]="questionVideoSrc" frameborder="0"
-            allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+            <ng-container [hidden]="questionVideoSrc === ''">
+              <div [innerHTML]="questionVideoSrc"></div>
+            </ng-container>
+            <!-- <iframe [hidden]="questionVideoSrc === ''" width="100%" height="100px" [src]="questionVideoSrc" frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe> -->
           </div>
         </div>
       </div>
